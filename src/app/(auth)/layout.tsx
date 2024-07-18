@@ -1,43 +1,44 @@
+'use client';
+
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 import Header from "@/components/header/header";
-import { Box, Container } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
-import Sidebar from "@/components/sidebar";
+import { AuthProvider } from "@/components/AuthContext/AuthContext";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Ensure that the component only renders on the client side
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Return null on initial render to avoid mismatch
+  }
+
   return (
     <html lang="en">
       <head />
-      <style>{`
-        body, html, #__next {
-          height: 100%;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-        }
-      `}</style>
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box >
-            <Box>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
               <Header />
-            </Box>
-              <Box sx={{ flex: 1, padding: 5,  }}>
+              <Box sx={{ flex: 1, padding: 5 }}>
                 {children}
               </Box>
-            <Box sx={{ width: "100%" }}>
               <Footer />
-            </Box>
-          </Box>
-        </ThemeProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

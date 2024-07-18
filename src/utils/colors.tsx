@@ -5,6 +5,7 @@ export const colors = {
     warning: '#ff9800',
     info: '#2196f3',
     success: '#4caf50',  
+    disabled: '#bdbdbd',
     text: {
       primary: '#212121',
       secondary: '#757575',

@@ -1,10 +1,11 @@
-'use client';
+"use client";
+
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 import Header from "@/components/header/header";
-import { Box, Container } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
 import { AuthProvider } from "@/components/AuthContext/AuthContext";
 
@@ -15,15 +16,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <title>My App</title>
+        <meta name="description" content="My App Description" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box>
-             {children}
-          </Box>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Grid container direction="column">
+              <Header />
+              <Box sx={{ flex: 1, padding: 5 }}>{children}</Box>
+              <Footer />
+            </Grid>
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

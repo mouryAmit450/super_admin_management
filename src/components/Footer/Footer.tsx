@@ -136,7 +136,7 @@ const Footer = memo(() => {
         >
           <Grid item xs={12} md={4}>
             <div className="footerleft">
-              <Typography variant="body2" component="p">
+              <Typography variant="body2" >
                 Website Content Managed by © Content Owned by Union Public
                 Service Commission, New Delhi, India.
               </Typography>
@@ -158,23 +158,23 @@ const Footer = memo(() => {
             </div>
           </Grid>
           <Grid item xs={12} md={4}>
-            <div className="visit">
+            <Box className="visit">
               <Typography variant="h2">Contact Us:</Typography>
               <Typography variant="body2">
                 Dholpur House, Shahajahan Road, New Delhi - 110069
               </Typography>
-            </div>
-            <div className="visit">
-              <div>
+            </Box>
+            <Box  className="visit">
+              <Box>
                 <Typography variant="h2">Your System IP Address:</Typography>
                 <Typography variant="h2" className="mt-3">
                   Current Time & Date:
                 </Typography>
-                <Typography variant="body2" className="">
+                {/* <p>
                   {moment().format("hh:mm:ss a (ddd, Do MMM YYYY)")}
-                </Typography>
-              </div>
-            </div>
+                </p> */}
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>

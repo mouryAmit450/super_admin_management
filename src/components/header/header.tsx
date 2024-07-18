@@ -20,7 +20,7 @@ import { upscLogo } from "@/assets/images";
 import Image from "next/image";
 
 const HeaderStyle = styled(Box)`
-  width: 100%;
+  width: 100%
 `;
 
 export default function Header() {

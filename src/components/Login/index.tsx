@@ -73,11 +73,11 @@ const Login = () => {
       }
     }
     if (name === "userId") {
-      if (value.length === 16) {
+      if (value.length === 5) {
         return;
       }
       // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (value.length < 15) {
+      if (value.length !== 6) {
         setOtrError("Please enter a valid OTR ID");
       } else {
         setOtrError("");
@@ -192,7 +192,6 @@ const Login = () => {
             mx: "auto",
             boxShadow:
               "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;",
-            //   my: "auto",
           }}
         >
           <Box
@@ -203,7 +202,6 @@ const Login = () => {
               width: "100%",
               borderRadius: "4px 4px 0px 0px",
               background: colors.primary,
-
               alignItems: "center",
             }}
           >
@@ -221,7 +219,6 @@ const Login = () => {
           </Box>
           <Box
             sx={{
-              // border: "1px solid gray",
               height: "auto",
               width: "90%",
               mx: "auto",
@@ -240,11 +237,11 @@ const Login = () => {
                 exclusive
                 onChange={handleChange}
                 aria-label="Platform"
-                size="medium"
+                size="small"
                 sx={{
                   width: "100%",
-                  border: `1px solid ${colors.primary}  !important`,
                   ".Mui-selected": {
+                    border: `1px solid ${colors.primary}  !important`,
                     backgroundColor: `${colors.primary} !important`,
                     color: "#fff !important",
                   },
@@ -256,7 +253,7 @@ const Login = () => {
                     width: "34%",
                     border: "1px solid blue",
                     fontWeight: 600,
-                    fontSize: "18px",
+                    fontSize: "16px",
                   }}
                 >
                   User Id
@@ -264,31 +261,25 @@ const Login = () => {
                 <ToggleButton
                   value="2"
                   sx={{
-                    width: "33%",
-                    border: "1px solid blue",
-                    fontWeight: 600,
-                    fontSize: "18px",
-                  }}
-                >
-                  EMAIL
-                </ToggleButton>
-                <ToggleButton
-                  value="3"
-                  sx={{
                     width: "34%",
                     border: "1px solid blue",
                     fontWeight: 600,
-                    fontSize: "18px",
+                    fontSize: "16px",
                   }}
                 >
                   MOBILE
                 </ToggleButton>
-                {/* <ToggleButton
-                value="aadhaar"
-                sx={{ width: "26%", border: "1px solid blue" }}
-              >
-                AADHAAR
-              </ToggleButton> */}
+                <ToggleButton
+                  value="3"
+                  sx={{
+                    width: "33%",
+                    border: "1px solid blue",
+                    fontWeight: 600,
+                    fontSize: "16px",
+                  }}
+                >
+                  EMAIL
+                </ToggleButton>
               </ToggleButtonGroup>
             </Box>
             {alignment === "1" && (
@@ -306,16 +297,8 @@ const Login = () => {
                     value={forms?.otrId}
                     onChange={handleFormChange}
                     type="number"
-                    // InputProps={{
-                    //   inputProps: {
-                    //     max: 15,
-                    //     min: 10,
-                    //   },
-                    // }}
                     inputProps={{
                       maxLength: 15,
-                      // inputMode: "numeric",
-                      // pattern: "[0-9]*",
                     }}
                     error={!!otrError}
                     helperText={otrError}
@@ -336,8 +319,6 @@ const Login = () => {
                     inputProps={{
                       maxLength: 15,
                       minLength: 8,
-                      // inputMode: "numeric",
-                      // pattern: "[0-9]*",
                     }}
                   ></TextField>
                 </Box>
@@ -345,7 +326,7 @@ const Login = () => {
             )}
 
             {/*  */}
-            {alignment === "2" && (
+            {alignment === "3" && (
               <Box>
                 <Box sx={{ alignItems: "center" }}>
                   {" "}
@@ -460,7 +441,7 @@ const Login = () => {
                 </Box>
               </Box>
             )}
-            {alignment === "3" && (
+            {alignment === "2" && (
               <Box>
                 <Box>
                   {" "}
