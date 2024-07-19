@@ -228,7 +228,7 @@ function Module() {
 <>
 <Container sx={{ display: "flex", justifyContent: "space-between",margin:'20px' }}>
         <Typography variant="h6" component="div">
-  
+          User Details
         </Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Add User

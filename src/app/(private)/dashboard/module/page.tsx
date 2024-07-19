@@ -238,10 +238,14 @@ function Module() {
   };
   return (
     <div>
-      <Container sx={{ display: "flex", justifyContent: "space-between",margin:'20px' }}>
-        <Typography variant="h6" component="div">
-  
-        </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "20px",
+        }}
+      >
+        <Typography variant="h6">Modules</Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Add Module
         </Button>
@@ -263,9 +267,7 @@ function Module() {
           </Typography>
         </DialogTitle>
         <DialogContent>{<Form />}</DialogContent>
-        <DialogActions>
-
-        </DialogActions>
+        <DialogActions></DialogActions>
       </Dialog>
     </div>
   );

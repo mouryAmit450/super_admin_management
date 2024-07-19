@@ -272,7 +272,7 @@ function Designation() {
           margin: "20px",
         }}
       >
-        <Typography variant="h6" component="div"></Typography>
+        <Typography variant="h6" >Designations</Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Add Designation
         </Button>
