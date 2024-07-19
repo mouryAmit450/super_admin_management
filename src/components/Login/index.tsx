@@ -15,7 +15,9 @@ import  Cookies from 'js-cookie'
 // @ts-ignore
 import Captcha from "demos-react-captcha";
 import { colors } from "@/utils/colors";
+import { useRouter } from "next/navigation";
 const Login = () => {
+  const router = useRouter()
   const [forms, setForms] = useState<any>({
     userId: "",
     candidatePassword: "",
@@ -106,6 +108,7 @@ const Login = () => {
   
   const handleLogin = async () => {
     Cookies.set('token', 'dummytoken')
+    router.push('/dashboard')
     // await useLogin({ ...forms, type: alignment });
   };
 
