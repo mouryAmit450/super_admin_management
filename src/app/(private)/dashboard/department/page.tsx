@@ -272,7 +272,7 @@ function Department() {
           margin: "20px",
         }}
       >
-        <Typography  component="div"></Typography>
+        <Typography variant="h6"> Departments</Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Add Department
         </Button>
