@@ -45,7 +45,7 @@ const Form = () => {
     <Box sx={{ flexGrow: 1 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
             <Controller
               name="department_ID"
               control={control}
@@ -61,7 +61,7 @@ const Form = () => {
                 />
               )}
             />
-          </Grid>
+          </Grid> */}
         <Grid item xs={12}>
             <Controller
               name="department_name"
@@ -80,7 +80,7 @@ const Form = () => {
           </Grid>
       
           
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Controller
               name="status"
               control={control}
@@ -102,7 +102,7 @@ const Form = () => {
                 </Input>
               )}
             />
-          </Grid>
+          </Grid> */}
       
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">

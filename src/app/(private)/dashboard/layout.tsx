@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
 
   const token :any =cookies().get('token')
-  if(!token.value){
+  if(!token?.value){
     redirect('/')
   }
   return (
