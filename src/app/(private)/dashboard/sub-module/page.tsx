@@ -3,6 +3,8 @@ import { GridColDef } from "@mui/x-data-grid";
 import React from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CardActions from '@mui/material/CardActions';
 import { useState } from "react";
 import {
   Typography,
