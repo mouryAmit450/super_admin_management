@@ -21,8 +21,12 @@ const footerMenu = {
 const FooterStyle = styled(Box)(({ theme }) => ({
   backgroundColor: "#2947a3",
   borderTop: `1px solid ${theme.palette.divider}`,
-  padding: "20px 0",
-  position: "relative",
+  padding: "60px 0",
+  width: "100%",
+  height: 'auto',
+  position: "sticky",
+  bottom: 0,
+  boxSizing: "border-box",
   ul: {
     margin: 0,
     padding: 0,
@@ -121,6 +125,8 @@ const FooterStyle = styled(Box)(({ theme }) => ({
   },
 }));
 
+
+
 const Footer = memo(() => {
   return (
     <FooterStyle>
@@ -142,7 +148,7 @@ const Footer = memo(() => {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12} md={4}>
+          {/* <Grid item xs={12} md={4}>
             <div className="footer_link">
               <Typography variant="h2">Useful Links</Typography>
               <ul>
@@ -156,7 +162,7 @@ const Footer = memo(() => {
                 ))}
               </ul>
             </div>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={4}>
             <Box className="visit">
               <Typography variant="h2">Contact Us:</Typography>
