@@ -183,3 +183,36 @@ export interface OfficerType {
     },
   ];
 }
+
+export function moduleName(): UserType[] {
+  return [
+  {
+    value: "1",
+    label: "OTR",
+  },
+  {
+    value: "2",
+    label: "SOAP",
+  },
+  {
+    value: "3",
+    label: "CDR",
+  },
+  {
+    value: "4",
+    label: "DAF",
+  },
+  {
+    value: "5",
+    label: "ORA",
+  },
+  {
+    value: "5",
+    label: "E-Admit",
+  },
+  {
+    value: "6",
+    label: "SAL",
+  },
+];
+}
