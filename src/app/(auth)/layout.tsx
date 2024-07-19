@@ -15,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   // Ensure that the component only renders on the client side
-  const token :any =cookies().get('token')
+  const token: any = cookies().get('token')
   // console.log('------->>>>',token.value)
-  if(token?.value){
+  if (token?.value) {
     redirect('/dashboard')
-  } 
+  }
   return (
     <html lang="en">
       <head />
@@ -27,11 +27,17 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <Box
+              display="flex"
+              flexDirection="column"
+              minHeight="100vh"
+            >
               <Header />
-              <Box sx={{ flex: 1, padding: 5 }}>
+              <Box component="main" flexGrow={1}>
                 {children}
               </Box>
               <Footer />
+            </Box>
           </ThemeProvider>
         </AuthProvider>
       </body>

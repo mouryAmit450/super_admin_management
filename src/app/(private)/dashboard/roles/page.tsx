@@ -3,6 +3,10 @@ import { GridColDef } from "@mui/x-data-grid";
 import React from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import { useState } from "react";
 import {
   Typography,
@@ -100,6 +104,9 @@ function Roles() {
           </IconButton>
           <IconButton>
             <EditIcon fontSize="small" />
+          </IconButton>
+          <IconButton>
+            <DeleteIcon fontSize="small" />
           </IconButton>
         </div>
       ),
@@ -297,12 +304,18 @@ function Roles() {
   };
 
   return (
-    <>
+    <Card
+    sx={{
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05)',
+      borderRadius: '8px',
+      overflow: 'hidden', 
+    }}>
+      <CardContent>
    <Container sx={{display:'flex', justifyContent:"space-between", margin:'20px'}}>
-      <Typography variant="h6" component="div">
+      <Typography variant="h6" sx={{fontWeight:'bold'}}  component="div">
         Roles
       </Typography>
-      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="primary"  onClick={handleClickOpen}>
         Add Role
       </Button>
     </Container>
@@ -329,7 +342,8 @@ function Roles() {
       
         </DialogActions>
       </Dialog>
-    </>
+    </CardContent>
+    </Card>
   );
 }
 

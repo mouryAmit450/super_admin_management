@@ -9,14 +9,17 @@ import {
 export default function MUITable(props: any) {
   const { rows, columns } = props;
   return (
-    <Box 
-    sx={{
-      minHeight: 500,
-      maxWidthwidth: "90%" ,
-      '& .super-app-theme--header': {
-        backgroundColor: '#bedaf3',
-      },
-    }}>
+    <Box
+      sx={{
+        height: 600,
+        fontWeight: 'bold',   
+
+        maxWidthwidth: "90%",
+        '& .super-app-theme--header': {
+          backgroundColor: '#2947A3',
+          color:'#fff',
+             },
+      }}>
       <DataGrid
         rows={rows}
         columns={columns}
