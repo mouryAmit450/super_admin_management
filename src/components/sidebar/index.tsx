@@ -50,33 +50,40 @@ const sidebarData = [
   {
     name: "Masters",
     items: [
+      { name: "Department", link: "/dashboard/department" },
+      { name: "Designation", link: "/dashboard/designation" },
+      { name: "Roles", link: "/dashboard/roles" },
       { name: "Module", link: "/dashboard/module" },
-      { name: "Designation", link: "#" },
-      { name: "Roles", link: "#" },
-      { name: "Designation Modules", link: "#" },
-      { name: "Designation Roles", link: "#" },
-      { name: "Location Masters", link: "#" },
+      { name: "Sub Module", link: "/dashboard/sub-module" },
+      // { name: "Location Masters", link: "#" },
     ],
   },
   {
     name: "Users",
     items: [
-      { name: "Module", link: "#" },
-      { name: "Designation", link: "#" },
+      { name: "Add New", link: "/dashboard/add-new" },
+      { name: "Role Assignment", link: "/dashboard/role-assignment" },
+      { name: "Change Password", link: "/dashboard/change-password" }
+
     ],
   },
   {
     name: "Reports",
     items: [
-      { name: "Module", link: "#" },
-      { name: "Designation", link: "#" },
+      { name: "Candidate Reports", link: "/dashboard/candidate-reports" },
+      { name: "Exam Reports ", link: "/dashboard/exam-reports" },
+      { name: "Soap", link: "/dashboard/soap" },
+      { name: "Ora", link: "/dashboard/ora" },
+
     ],
   },
   {
     name: "Logs",
     items: [
-      { name: "Module", link: "#" },
-      { name: "Designation", link: "#" },
+      { name: "Sms", link: "/dashboard/sms" },
+      { name: "Email", link: "/dashboard/email" },
+      { name: "Bank Payment", link: "/dashboard/bank-payment" },
+
     ],
   },
 ];

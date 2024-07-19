@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   // Ensure that the component only renders on the client side
   const token :any =cookies().get('token')
-  console.log('------->>>>',token.value)
+  // console.log('------->>>>',token.value)
   if(token?.value){
     redirect('/dashboard')
   } 
