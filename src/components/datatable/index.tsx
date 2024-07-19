@@ -6,17 +6,22 @@ import {
   Box,
 } from "@mui/material";
 
-
-
 export default function MUITable(props: any) {
-  const { rows, columns } = props
+  const { rows, columns } = props;
   return (
-    <Box sx={{ width: "90%" }}> 
+    <Box 
+    sx={{
+      height: 300,
+      maxWidthwidth: "90%" ,
+      '& .super-app-theme--header': {
+        backgroundColor: '#bedaf3',
+      },
+    }}>
       <DataGrid
         rows={rows}
         columns={columns}
         getRowId={(row) => row.id}
-            initialState={{
+        initialState={{
           pagination: {
             paginationModel: {
               pageSize: 10,
@@ -25,13 +30,7 @@ export default function MUITable(props: any) {
         }}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
-        sx={{
-          '.css-yrdy0g-MuiDataGrid-columnHeaderRow': {
-            backgroundColor: '#0f0f0f ',
-          },
-        }}
       />
-      
     </Box>
   );
-};
+}

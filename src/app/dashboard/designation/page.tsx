@@ -19,7 +19,7 @@ import MUITable from "@/components/datatable";
 import Form from "./form";
 import { NumbersOutlined } from "@mui/icons-material";
 
-function Module() {
+function Designation() {
   const columns: GridColDef<(typeof rows)[number]>[] = [
     {
       field: "designation_id",
@@ -31,22 +31,24 @@ function Module() {
     {
       field: "designation_name",
       headerName: "Designation Name",
-      headerClassName: "super-app-theme--header",
       width: 150,
       editable: true,
+      headerClassName: "super-app-theme--header",
       flex: 2,
     },
     {
       field: "status",
       headerName: "Status",
-      headerClassName: "super-app-theme--header",
       width: 110,
       editable: true,
-      flex: 1,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
+
     {
       field: "creation_by",
       headerName: "Creation By",
+
       width: 130,
       editable: true,
       headerClassName: "super-app-theme--header",
@@ -76,12 +78,11 @@ function Module() {
       headerClassName: "super-app-theme--header",
       flex: 2,
     },
+
     {
       field: "action",
       headerName: "Action",
-      headerClassName: "super-app-theme--header",
       width: 120,
-      flex: 2,
 
       renderCell: (params) => (
         <div>
@@ -94,6 +95,8 @@ function Module() {
         </div>
       ),
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
   ];
 
@@ -117,16 +120,21 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "3",
       designation_id: "3",
       designation_name: "Smith",
+
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "4",
@@ -138,6 +146,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "5",
@@ -149,6 +159,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "6",
@@ -160,6 +172,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "7",
@@ -171,6 +185,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "8",
@@ -182,6 +198,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "9",
@@ -193,6 +211,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "10",
@@ -204,6 +224,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "11",
@@ -215,6 +237,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "12",
@@ -226,6 +250,8 @@ function Module() {
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
   ];
   const [open, setOpen] = useState(false);
@@ -236,16 +262,22 @@ function Module() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   return (
     <div>
-      <Container sx={{ display: "flex", justifyContent: "space-between",margin:'20px' }}>
-        <Typography variant="h6" component="div">
-  
-        </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "20px",
+        }}
+      >
+        <Typography variant="h6" component="div"></Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
-          Add Module
+          Add Designation
         </Button>
       </Container>
+
       <MUITable rows={rows} columns={columns} />
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
@@ -259,16 +291,13 @@ function Module() {
               justifySelf: "end",
             }}
           >
-            Add Module
+            Add Designation
           </Typography>
         </DialogTitle>
         <DialogContent>{<Form />}</DialogContent>
-        <DialogActions>
-
-        </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-export default Module;
+export default Designation;

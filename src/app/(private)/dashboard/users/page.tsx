@@ -14,55 +14,71 @@ import {
   DialogContent,
   DialogActions,
   IconButton,
+  Container,
 } from "@mui/material";
 import MUITable from "@/components/datatable";
 import Form from "./form";
 
 function Module() {
     const columns: GridColDef<(typeof rows)[number]>[] = [
-        { field: "user_id", headerName: "User Id", width: 90 },
+        { field: "user_id", headerName: "User Id", width: 90,headerClassName: "super-app-theme--header",
+          flex: 1, },
         {
           field: "user_name",
           headerName: "Name",
-          width: 150,
+          width: 120,
           editable: true,
+          headerClassName: "super-app-theme--header",
+          flex: 2, 
         },
         {
             field: "designation",
             headerName: "Designation",
             width: 150,
             editable: true,
+            headerClassName: "super-app-theme--header",
+            flex: 2, 
           },
           {
             field: "module",
             headerName: "Module",
-            width: 150,
+            width: 120,
             editable: true,
+            headerClassName: "super-app-theme--header",
+            flex: 2, 
           },
           {
             field: "role",
-            headerName: "role",
+            headerName: "Role",
             width: 150,
             editable: true,
+            headerClassName: "super-app-theme--header",
+            flex: 2, 
           },
     
         {
           field: "status",
           headerName: "Status",
-          type: "number",
+  
           width: 100,
           editable: true,
+          headerClassName: "super-app-theme--header",
+          flex: 2, 
         },
         {
           field: "creation_date",
           headerName: "Creation Date",
-          type: "number",
+          
           width: 110,
           editable: true,
+          headerClassName: "super-app-theme--header",
+          flex: 2, 
         },
         {
           field: "action",
           headerName: "Action",
+          headerClassName: "super-app-theme--header",
+          flex: 2, 
           renderCell: (params) => (
             <div>
               <IconButton>
@@ -210,21 +226,14 @@ function Module() {
     
   return (
 <>
-        <Button color="primary" onClick={handleClickOpen}>
-      <Typography
-            
-            sx={{
-              backgroundColor: "#2947A3",
-              color: "white",
-              padding: "8px",
-              borderRadius: "10px",
-            
-             
-            }}
-          >
-           Add User
-          </Typography>
-      </Button>
+<Container sx={{ display: "flex", justifyContent: "space-between",margin:'20px' }}>
+        <Typography variant="h6" component="div">
+  
+        </Typography>
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+          Add User
+        </Button>
+      </Container>
         <MUITable rows={rows} columns={columns}/>
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
         <DialogTitle>
@@ -245,9 +254,7 @@ function Module() {
      {<Form/>}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
+         
         </DialogActions>
       </Dialog>
         </>

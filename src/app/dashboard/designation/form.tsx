@@ -36,23 +36,31 @@ const Form = () => {
     { value: "Y", label: "Active" },
     { value: "N", label: "Inactive" },
   ];
-  const role = [
-    { label: "SuperAdmin(IT)", value: "superadmin(it)" },
-    { label: "SuperAdmin(Dept)", value: "superadmin(dept)" },
-    { label: "HelpDeskSupport", value: "helpdesksupport" },
-    { label: "Local Inspecting Officer", value: "local_inspecting_officer" },
-    { label: "Inspecting Officer", value: "inspecting_officer" },
-    { label: "Venue Supervisor", value: "venue_supervisor" },
-    {
-      label: "Assistant Venue Supervisor",
-      value: "assistant_venue_supervisor",
-    },
-    { label: "Bel Supervisor", value: "bel_supervisor" },
-    { label: "Maker", value: "maker" },
-    { label: "Checker", value: "checker" },
-    { label: "Approver", value: "approver" },
+  const designation=  [
+    { label: "Joint Secretary", value: "joint_secretary" },
+    { label: "Assistant Director", value: "assistant_director" },
+    { label: "Assistant Section Officer", value: "assistant_section_officer" },
+    { label: "Consultant", value: "consultant" },
+    { label: "Deputy Director", value: "deputy_director" },
+    { label: "Data Entry Operator", value: "data_entry_operator" },
+    { label: "Director", value: "director" },
+    { label: "Data Processing Assistant", value: "data_processing_assistant" },
+    { label: "Deputy Director", value: "deputy_director" },
+    { label: "Joint Director", value: "joint_director" },
+    { label: "Junior Review Officer", value: "junior_review_officer" },
+    { label: "Review Officer", value: "review_officer" },
+    { label: "System Analyst", value: "system_analyst" },
+    { label: "Scorer", value: "scorer" },
+    { label: "Section Officer", value: "section_officer" },
+    { label: "Senior Review Officer", value: "senior_review_officer" },
+    { label: "Senior System Analyst", value: "senior_system_analyst" },
+    { label: "Superintendent", value: "superintendent" },
+    { label: "Under Secretary", value: "under_secretary" },
+    { label: "District Magistrate", value: "district_magistrate" },
+    { label: "District Collector", value: "district_collector" },
+    { label: "Principal", value: "principal" },
+    { label: "Vice Principal", value: "vice_principal" }
   ];
-
   const { control, handleSubmit, reset } = useForm();
 
   const onSubmit = () => {};
@@ -63,12 +71,12 @@ const Form = () => {
         <Grid container spacing={2}>
         <Grid item xs={12}>
             <Controller
-              name="role_ID"
+              name="designation_ID"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role ID"
+                  label="Designation ID"
                   variant="outlined"
                   fullWidth
                   value='--<System Generated>--'
@@ -78,14 +86,14 @@ const Form = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+        <Grid item xs={12}>
             <Controller
-              name="role_name"
+              name="designation_name"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Name"
+                  label="Designation Name"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -96,12 +104,12 @@ const Form = () => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name="role_description"
+              name="designation_description"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Description"
+                  label="Designation Description"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -112,12 +120,12 @@ const Form = () => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name="role_short-code"
+              name="designation_short-name"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Short Code"
+                  label="Designation Short Name"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -126,6 +134,7 @@ const Form = () => {
               )}
             />
           </Grid>
+          
           <Grid item xs={12}>
             <Controller
               name="status"
@@ -148,7 +157,8 @@ const Form = () => {
                 </Input>
               )}
             />
-          </Grid>   
+          </Grid>
+      
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
         Create

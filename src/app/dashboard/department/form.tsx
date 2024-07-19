@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { TextField, Button, MenuItem } from "@mui/material";
 import { colors } from "@/utils/colors";
-//import { officerType , designation, department,userType,status } from "@/utils/Data";
+//import { officerType , department, department,userType,status } from "@/utils/Data";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,22 +36,6 @@ const Form = () => {
     { value: "Y", label: "Active" },
     { value: "N", label: "Inactive" },
   ];
-  const role = [
-    { label: "SuperAdmin(IT)", value: "superadmin(it)" },
-    { label: "SuperAdmin(Dept)", value: "superadmin(dept)" },
-    { label: "HelpDeskSupport", value: "helpdesksupport" },
-    { label: "Local Inspecting Officer", value: "local_inspecting_officer" },
-    { label: "Inspecting Officer", value: "inspecting_officer" },
-    { label: "Venue Supervisor", value: "venue_supervisor" },
-    {
-      label: "Assistant Venue Supervisor",
-      value: "assistant_venue_supervisor",
-    },
-    { label: "Bel Supervisor", value: "bel_supervisor" },
-    { label: "Maker", value: "maker" },
-    { label: "Checker", value: "checker" },
-    { label: "Approver", value: "approver" },
-  ];
 
   const { control, handleSubmit, reset } = useForm();
 
@@ -63,12 +47,12 @@ const Form = () => {
         <Grid container spacing={2}>
         <Grid item xs={12}>
             <Controller
-              name="role_ID"
+              name="department_ID"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role ID"
+                  label="Department ID"
                   variant="outlined"
                   fullWidth
                   value='--<System Generated>--'
@@ -78,14 +62,14 @@ const Form = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+        <Grid item xs={12}>
             <Controller
-              name="role_name"
+              name="department_name"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Name"
+                  label="Department Name"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -94,38 +78,8 @@ const Form = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
-            <Controller
-              name="role_description"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  label="Role Description"
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  multiline
-                />
-              )}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Controller
-              name="role_short-code"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  label="Role Short Code"
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                
-                />
-              )}
-            />
-          </Grid>
+      
+          
           <Grid item xs={12}>
             <Controller
               name="status"
@@ -148,7 +102,8 @@ const Form = () => {
                 </Input>
               )}
             />
-          </Grid>   
+          </Grid>
+      
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
         Create
