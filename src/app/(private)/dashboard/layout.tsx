@@ -1,29 +1,26 @@
-"use client";
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 import Header from "@/components/header/header";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/sidebar";
-
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const token :any =cookies().get('token')
+  if(!token.value){
+    redirect('/')
+  }
   return (
     <html lang="en">
       <head />
-      <style>{`
-        body, html, #__next {
-          height: 100%;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-        }
-      `}</style>
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />

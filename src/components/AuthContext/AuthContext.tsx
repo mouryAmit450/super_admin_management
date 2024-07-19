@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       );
       console.log(response.data);
       if (response.data.tokens) {
-        console.log(1);
         localStorage.setItem("token", response.data.token);
         setIsAuthenticated(true);
         window.location.href = "/candidate/dashboard";

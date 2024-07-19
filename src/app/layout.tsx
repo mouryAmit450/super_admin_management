@@ -26,9 +26,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Grid container direction="column">
-              <Header />
               <Box sx={{ flex: 1, padding: 5 }}>{children}</Box>
-              <Footer />
             </Grid>
           </ThemeProvider>
         </AuthProvider>

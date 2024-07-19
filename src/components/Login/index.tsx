@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-"use client";
+'use client'
 import {
   Box,
   Button,
-  Container,
   Grid,
   TextField,
   ToggleButton,
@@ -11,8 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useAuth } from "../AuthContext/AuthContext";
+// @ts-ignore
+import  Cookies from 'js-cookie'
 // @ts-ignore
 import Captcha from "demos-react-captcha";
 import { colors } from "@/utils/colors";
@@ -104,12 +103,10 @@ const Login = () => {
       [name]: value,
     }));
   };
+  
   const handleLogin = async () => {
-    await useLogin({ ...forms, type: alignment });
-    // if (data) {
-    //   return window.location.href = '/dashboard/candidate';
-    // }
-    // return;
+    Cookies.set('token', 'dummytoken')
+    // await useLogin({ ...forms, type: alignment });
   };
 
   const getData = (value: any) => {
@@ -593,9 +590,6 @@ const Login = () => {
             >
               LOGIN
             </Button>
-            <Link href="/about" style={{ float: "right" }}>
-              Forgot Password
-            </Link>
           </Box>
         </Box>
       </Grid>
