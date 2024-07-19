@@ -3,10 +3,19 @@ import { GridColDef } from "@mui/x-data-grid";
 import React from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+// import Form
 import { useState } from "react";
 import {
   Typography,
   Container,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import MUITable from "@/components/datatable";
 // import Form from "./form";
@@ -74,7 +83,12 @@ function RoleAssignment() {
   };
 
   return (
-    <div>
+    <Card sx={{
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05)',
+      borderRadius: '8px',
+      overflow: 'hidden', 
+    }}>
+      <CardContent>
       <Container
         sx={{
           display: "flex",
@@ -83,13 +97,13 @@ function RoleAssignment() {
         }}
       >
         <Typography variant="h6"> Role Assignment</Typography>
-        {/* <Button variant="contained" color="primary" onClick={handleClickOpen}>
-          Add Submodule
-        </Button> */}
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+          Add Role Assignment
+        </Button>
       </Container>
 
       <MUITable rows={rows} columns={columns} />
-      {/* <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
           <Typography
             variant="h5"
@@ -102,12 +116,13 @@ function RoleAssignment() {
               fontSize:'20px'
             }}
           >
-            Add Department
+            Add Role Assignment
           </Typography>
         </DialogTitle>
-        <DialogContent>{<Form />}</DialogContent>
-      </Dialog> */}
-    </div>
+        {/* <DialogContent>{<Form />}</DialogContent> */}
+      </Dialog>
+      </CardContent>
+    </Card>
   );
 }
 
