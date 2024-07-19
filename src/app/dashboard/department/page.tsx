@@ -19,34 +19,36 @@ import MUITable from "@/components/datatable";
 import Form from "./form";
 import { NumbersOutlined } from "@mui/icons-material";
 
-function Module() {
+function Department() {
   const columns: GridColDef<(typeof rows)[number]>[] = [
     {
-      field: "designation_id",
+      field: "department_id",
       headerName: "ID",
       width: 70,
       headerClassName: "super-app-theme--header",
       flex: 1,
     },
     {
-      field: "designation_name",
-      headerName: "Designation Name",
-      headerClassName: "super-app-theme--header",
+      field: "department_name",
+      headerName: "Department Name",
       width: 150,
       editable: true,
+      headerClassName: "super-app-theme--header",
       flex: 2,
     },
     {
       field: "status",
       headerName: "Status",
-      headerClassName: "super-app-theme--header",
       width: 110,
       editable: true,
-      flex: 1,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
+
     {
       field: "creation_by",
       headerName: "Creation By",
+
       width: 130,
       editable: true,
       headerClassName: "super-app-theme--header",
@@ -76,12 +78,11 @@ function Module() {
       headerClassName: "super-app-theme--header",
       flex: 2,
     },
+
     {
       field: "action",
       headerName: "Action",
-      headerClassName: "super-app-theme--header",
       width: 120,
-      flex: 2,
 
       renderCell: (params) => (
         <div>
@@ -94,14 +95,16 @@ function Module() {
         </div>
       ),
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
   ];
 
   const rows = [
     {
       id: "1",
-      designation_id: "1",
-      designation_name: "Snow",
+      department_id: "1",
+      department_name: "Snow",
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
@@ -110,122 +113,145 @@ function Module() {
     },
     {
       id: "2",
-      designation_id: "2",
-      designation_name: "Doe",
+      department_id: "2",
+      department_name: "Doe",
       status: "inactive",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "3",
-      designation_id: "3",
-      designation_name: "Smith",
+      department_id: "3",
+      department_name: "Smith",
+
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "4",
-      designation_id: "4",
-      designation_name: "Brown",
+      department_id: "4",
+      department_name: "Brown",
 
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "5",
-      designation_id: "5",
-      designation_name: "Johnson",
+      department_id: "5",
+      department_name: "Johnson",
 
       status: "inactive",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "6",
-      designation_id: "6",
-      designation_name: "Williams",
+      department_id: "6",
+      department_name: "Williams",
 
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "7",
-      designation_id: "7",
-      designation_name: "Taylor",
+      department_id: "7",
+      department_name: "Taylor",
 
       status: "inactive",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "8",
-      designation_id: "8",
-      designation_name: "Anderson",
+      department_id: "8",
+      department_name: "Anderson",
 
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "9",
-      designation_id: "9",
-      designation_name: "Thomas",
+      department_id: "9",
+      department_name: "Thomas",
 
       status: "inactive",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "10",
-      designation_id: "10",
-      designation_name: "Jackson",
+      department_id: "10",
+      department_name: "Jackson",
 
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "11",
-      designation_id: "11",
-      designation_name: "White",
+      department_id: "11",
+      department_name: "White",
 
       status: "inactive",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
     {
       id: "12",
-      designation_id: "12",
-      designation_name: "Harris",
+      department_id: "12",
+      department_name: "Harris",
 
       status: "active",
       Created_DT: "21-02-2022",
       creation_by: "07-08-2024",
       Modified_BY: "21-02-2022",
       Modified_DT: "07-08-2024",
+      Record_Version: "4",
+      Audit_Log_Id: "76ru",
     },
   ];
   const [open, setOpen] = useState(false);
@@ -236,16 +262,22 @@ function Module() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   return (
     <div>
-      <Container sx={{ display: "flex", justifyContent: "space-between",margin:'20px' }}>
-        <Typography variant="h6" component="div">
-  
-        </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "20px",
+        }}
+      >
+        <Typography  component="div"></Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
-          Add Module
+          Add Department
         </Button>
       </Container>
+
       <MUITable rows={rows} columns={columns} />
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
@@ -254,21 +286,19 @@ function Module() {
             sx={{
               backgroundColor: "#2947A3",
               color: "white",
-              padding: "10px",
+              padding: "8px",
               borderRadius: "5px",
               justifySelf: "end",
+              fontSize:'20px'
             }}
           >
-            Add Module
+            Add Department
           </Typography>
         </DialogTitle>
         <DialogContent>{<Form />}</DialogContent>
-        <DialogActions>
-
-        </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-export default Module;
+export default Department;

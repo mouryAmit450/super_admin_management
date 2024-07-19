@@ -19,74 +19,80 @@ import MUITable from "@/components/datatable";
 import Form from "./form";
 function Roles() {
   const columns: GridColDef<(typeof rows)[number]>[] = [
-    { field: "role_id", headerName: "Role Id", width: 90 },
+    { field: "role_id", headerName: "Role Id", width: 90,headerClassName: "super-app-theme--header",
+      flex: 1, },
     {
       field: "role_name",
       headerName: "Name",
       width: 150,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "role_description",
       headerName: "Role Description",
       width: 150,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "role_shortCode",
       headerName: "Role Short Code",
       width: 80,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
 
     {
       field: "status",
       headerName: "Status",
-      type: "number",
       width: 100,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "creation_by",
       headerName: "Creation By",
-      type: "number",
-      width: 150,
+      width: 130,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "Created_DT",
       headerName: "Created Date",
-      width: 150,
+      width: 130,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "Modified_BY",
       headerName: "Modified BY",
-      width: 150,
+      width: 130,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
     {
       field: "Modified_DT",
       headerName: "Modified DT",
-      width: 150,
+      width: 130,
       editable: true,
+      headerClassName: "super-app-theme--header",
+      flex: 2,
     },
-    {
-      field: "Record_Version",
-      headerName: "Record Version",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "Audit_Log_Id",
-      headerName: "Audit Log Id",
-      width: 150,
-      editable: true,
-    },
+  
 
     {
       field: "action",
       headerName: "Action",
+      headerClassName: "super-app-theme--header",
+      flex: 2,
       renderCell: (params) => (
         <div>
           <IconButton>
@@ -292,16 +298,16 @@ function Roles() {
 
   return (
     <>
-   <Container sx={{display:'flex', justifyContent:"space-between"}}>
+   <Container sx={{display:'flex', justifyContent:"space-between", margin:'20px'}}>
       <Typography variant="h6" component="div">
-        Heading
+       
       </Typography>
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
-        Button
+        Add Role
       </Button>
     </Container>
       <MUITable rows={rows} columns={columns} />
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
           <Typography
             variant="h5"
@@ -309,7 +315,7 @@ function Roles() {
               backgroundColor: "#2947A3",
               color: "white",
               padding: "10px",
-              borderRadius: "10px",
+              borderRadius: "5px",
              justifySelf:'end'
             }}
           >
@@ -320,9 +326,7 @@ function Roles() {
      {<Form/>}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
+      
         </DialogActions>
       </Dialog>
     </>

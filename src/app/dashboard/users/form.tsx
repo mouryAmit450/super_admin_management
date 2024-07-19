@@ -20,8 +20,11 @@ export const Input = styled(TextField)`
   && {
     .MuiInputBase-root {
       font-size: 16px;
-      border-color: "#2947A3";
-     
+      border-color: "primary";
+      height: 2.8em;
+    }
+    .MuiInputLabel-root{
+      color: "primary";
     }
   }
 `;
@@ -265,7 +268,7 @@ const Form = () => {
               name="userId"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="UserID" variant="filled" fullWidth margin="dense" />
+                <Input {...field} label="UserID" value='--<System Generated>--' variant="outlined" fullWidth margin="dense" />
               )}
             />
           </Grid>
@@ -274,7 +277,7 @@ const Form = () => {
               name="employeeCode"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Employee Code" variant="filled" fullWidth margin="dense" />
+                <Input {...field} label="Employee Code" variant="outlined" fullWidth margin="dense" />
               )}
             />
           </Grid>
@@ -283,7 +286,7 @@ const Form = () => {
               name="name"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Name" variant="filled" fullWidth margin="dense" />
+                <Input {...field} label="Name" variant="outlined" fullWidth margin="dense" />
               )}
             />
           </Grid>
@@ -296,7 +299,7 @@ const Form = () => {
                   {...field}
                   label="Date of Birth"
                   type="date"
-                  variant="filled"
+                  variant="outlined"
                   fullWidth
                   margin="dense"
                   InputLabelProps={{ shrink: true }}
@@ -309,7 +312,7 @@ const Form = () => {
               name="module"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Module" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="Module" variant="outlined" fullWidth margin="dense" select>
                   {module && module.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -324,7 +327,7 @@ const Form = () => {
               name="department"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Department" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="Department" variant="outlined" fullWidth margin="dense" select>
                   {department && department?.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -339,7 +342,7 @@ const Form = () => {
               name="designation"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Designation" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="Designation" variant="outlined" fullWidth margin="dense" select>
                   {designation && designation.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -354,7 +357,7 @@ const Form = () => {
               name="officerType"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Officer Type" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="Officer Type" variant="outlined" fullWidth margin="dense" select>
                   {officerType && officerType?.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -369,7 +372,7 @@ const Form = () => {
               name="userType"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="User Type" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="User Type" variant="outlined" fullWidth margin="dense" select>
                   {userType && userType?.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -388,7 +391,7 @@ const Form = () => {
                   {...field}
                   label="Date of Joining"
                   type="date"
-                  variant="filled"
+                  variant="outlined"
                   fullWidth
                   margin="dense"
                   InputLabelProps={{ shrink: true }}
@@ -405,7 +408,7 @@ const Form = () => {
                   {...field}
                   label="Date of Retirement"
                   type="date"
-                  variant="filled"
+                  variant="outlined"
                   fullWidth
                   margin="dense"
                   InputLabelProps={{ shrink: true }}
@@ -419,7 +422,7 @@ const Form = () => {
               name="status"
               control={control}
               render={({ field }) => (
-                <Input {...field} label="Status" variant="filled" fullWidth margin="dense" select>
+                <Input {...field} label="Status" variant="outlined" fullWidth margin="dense" select>
                   {status && status?.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -431,7 +434,7 @@ const Form = () => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
-              Submit
+              Create
             </Button>
           </Grid>
         </Grid>

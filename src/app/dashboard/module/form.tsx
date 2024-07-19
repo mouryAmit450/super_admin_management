@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { TextField, Button, MenuItem } from "@mui/material";
 import { colors } from "@/utils/colors";
-//import { officerType , designation, department,userType,status } from "@/utils/Data";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,23 +36,38 @@ const Form = () => {
     { value: "Y", label: "Active" },
     { value: "N", label: "Inactive" },
   ];
-  const role = [
-    { label: "SuperAdmin(IT)", value: "superadmin(it)" },
-    { label: "SuperAdmin(Dept)", value: "superadmin(dept)" },
-    { label: "HelpDeskSupport", value: "helpdesksupport" },
-    { label: "Local Inspecting Officer", value: "local_inspecting_officer" },
-    { label: "Inspecting Officer", value: "inspecting_officer" },
-    { label: "Venue Supervisor", value: "venue_supervisor" },
-    {
-      label: "Assistant Venue Supervisor",
-      value: "assistant_venue_supervisor",
-    },
-    { label: "Bel Supervisor", value: "bel_supervisor" },
-    { label: "Maker", value: "maker" },
-    { label: "Checker", value: "checker" },
-    { label: "Approver", value: "approver" },
+  const module = [
+    { value: " ", label: "" },
+    { value: "Y", label: "OTR" },
+    { value: "N", label: "SOAP" },
+    { value: " ", label: "CDR" },
+    { value: "Y", label: "DAF" },
+    { value: "N", label: "ORA" },
+    { value: " ", label: "E- Admit" },
+    { value: "Y", label: "SAL" },
+    { value: "N", label: "Chance Verification" },
+    { value: " ", label: "IBR" },
+    { value: "Y", label: "Panel Data Bank" },
+    { value: "N", label: "VMS" },
+    { value: " ", label: "Payment gateway" },
+    { value: "Y", label: "ORA Pre Processing" },
+    { value: "N", label: "ORA Post Processing" },
+    { value: " ", label: "E-Summon" },
+    { value: "Y", label: "Expert Management System" },
+    { value: "N", label: "Hindi to English" },
+    { value: " ", label: "Email & SMS Portal" },
+    { value: "Y", label: "Marksheet System" },
+    { value: "N", label: "Requisition Index Card" },
+    { value: "Y", label: "Socio Economic Analysis" },
+    { value: "N", label: "QPRep" },
+    { value: " ", label: "PT Board" },
+    { value: "Y", label: "Alpha Query System" },
+    { value: "N", label: "Item Analysis Report" },
+    { value: " ", label: "SSB Marks System" },
+    { value: "Y", label: "SSB conventional" },
+    { value: "N", label: "Change Slip" },
+    { value: " ", label: "GIGW 3.0" },
   ];
-
   const { control, handleSubmit, reset } = useForm();
 
   const onSubmit = () => {};
@@ -61,31 +76,15 @@ const Form = () => {
     <Box sx={{ flexGrow: 1 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
+         
         <Grid item xs={12}>
             <Controller
-              name="role_ID"
+              name="module_name"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role ID"
-                  variant="outlined"
-                  fullWidth
-                  value='--<System Generated>--'
-                  margin="dense"
-                  multiline
-                />
-              )}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Controller
-              name="role_name"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  label="Role Name"
+                  label="Module Name"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -96,12 +95,12 @@ const Form = () => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name="role_description"
+              name="module_description"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Description"
+                  label="Module Description"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -110,14 +109,31 @@ const Form = () => {
               )}
             />
           </Grid>
+   
           <Grid item xs={12}>
             <Controller
-              name="role_short-code"
+              name="record_version"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Role Short Code"
+                  label="Record Version"
+                  variant="outlined"
+                  fullWidth
+                  margin="dense"
+                
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Controller
+              name="audit_log_id"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Audit Log ID"
                   variant="outlined"
                   fullWidth
                   margin="dense"
@@ -148,12 +164,16 @@ const Form = () => {
                 </Input>
               )}
             />
-          </Grid>   
+          </Grid>
+      
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
+         
+          </Grid>
+          <Grid item xs={12}>
+          <Button type="submit" variant="contained" color="primary">
         Create
             </Button>
-          </Grid>
+            </Grid>
         </Grid>
       </form>
     </Box>
