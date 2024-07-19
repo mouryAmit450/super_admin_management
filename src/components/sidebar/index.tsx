@@ -61,7 +61,7 @@ const sidebarData = [
   {
     name: "Users",
     items: [
-      { name: "Add New", link: "/dashboard/add-new" },
+      { name: "Add New", link: "/dashboard/users" },
       { name: "Role Assignment", link: "/dashboard/role-assignment" },
       { name: "Change Password", link: "/dashboard/change-password" }
 

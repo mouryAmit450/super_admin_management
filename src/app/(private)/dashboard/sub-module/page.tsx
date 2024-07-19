@@ -17,243 +17,120 @@ import {
 } from "@mui/material";
 import MUITable from "@/components/datatable";
 import Form from "./form";
-import { NumbersOutlined } from "@mui/icons-material";
 
 function Department() {
-  const columns: GridColDef<(typeof rows)[number]>[] = [
-    {
-      field: "department_id",
-      headerName: "ID",
-      width: 70,
-      headerClassName: "super-app-theme--header",
-      flex: 1,
-    },
-    {
-      field: "department_name",
-      headerName: "Department Name",
-      width: 150,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 110,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-
-    {
-      field: "creation_by",
-      headerName: "Creation By",
-
-      width: 130,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-    {
-      field: "Created_DT",
-      headerName: "Created Date",
-      width: 130,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-    {
-      field: "Modified_BY",
-      headerName: "Modified BY",
-      width: 130,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-    {
-      field: "Modified_DT",
-      headerName: "Modified DT",
-      width: 130,
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-
-    {
-      field: "action",
-      headerName: "Action",
-      width: 120,
-
-      renderCell: (params) => (
-        <div>
-          <IconButton>
-            <VisibilityIcon fontSize="small" />
-          </IconButton>
-          <IconButton>
-            <EditIcon fontSize="small" />
-          </IconButton>
-        </div>
-      ),
-      editable: true,
-      headerClassName: "super-app-theme--header",
-      flex: 2,
-    },
-  ];
-
-  const rows = [
-    {
-      id: "1",
-      department_id: "1",
-      department_name: "Snow",
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-    },
-    {
-      id: "2",
-      department_id: "2",
-      department_name: "Doe",
-      status: "inactive",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "3",
-      department_id: "3",
-      department_name: "Smith",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "4",
-      department_id: "4",
-      department_name: "Brown",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "5",
-      department_id: "5",
-      department_name: "Johnson",
-
-      status: "inactive",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "6",
-      department_id: "6",
-      department_name: "Williams",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "7",
-      department_id: "7",
-      department_name: "Taylor",
-
-      status: "inactive",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "8",
-      department_id: "8",
-      department_name: "Anderson",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "9",
-      department_id: "9",
-      department_name: "Thomas",
-
-      status: "inactive",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "10",
-      department_id: "10",
-      department_name: "Jackson",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "11",
-      department_id: "11",
-      department_name: "White",
-
-      status: "inactive",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-    {
-      id: "12",
-      department_id: "12",
-      department_name: "Harris",
-
-      status: "active",
-      Created_DT: "21-02-2022",
-      creation_by: "07-08-2024",
-      Modified_BY: "21-02-2022",
-      Modified_DT: "07-08-2024",
-      Record_Version: "4",
-      Audit_Log_Id: "76ru",
-    },
-  ];
+    const columns: GridColDef[] = [
+        { field: 'Sub_Module_ID', headerName: 'Sub Module ID', width: 150 },
+        { field: 'Sub_Module_Name_EN', headerName: 'Sub Module Name', width: 200 },
+        { field: 'Module_ID', headerName: 'Module ID', width: 150 },
+        { field: 'Status', headerName: 'Status', width: 100 },
+        { field: 'Created_DT', headerName: 'Created Date', width: 150 },
+        { field: 'creation_by', headerName: 'Creation By', width: 150 },
+        { field: 'action', headerName: 'Action', width: 150,renderCell: (params) => (
+            <div>
+              <IconButton>
+                <VisibilityIcon fontSize="small" />
+              </IconButton>
+              <IconButton>
+                <EditIcon fontSize="small" />
+              </IconButton>
+            </div>
+          ), },
+      ];
+      
+      const rows = [
+        {
+          id: '1',
+          Sub_Module_ID: '1',
+          Sub_Module_Name_EN: 'Snow',
+          Module_ID: '2',
+          Status: 'Y',
+          Created_DT: '21-02-2022',
+          creation_by: '07-08-2024'
+        },
+        {
+          id: '2',
+          Sub_Module_ID: '2',
+          Sub_Module_Name_EN: 'Rain',
+          Module_ID: '3',
+          Status: 'N',
+          Created_DT: '22-03-2022',
+          creation_by: '08-08-2024'
+        },
+        {
+          id: '3',
+          Sub_Module_ID: '3',
+          Sub_Module_Name_EN: 'Sun',
+          Module_ID: '4',
+          Status: 'Y',
+          Created_DT: '23-04-2022',
+          creation_by: '09-08-2024'
+        },
+        {
+          id: '4',
+          Sub_Module_ID: '4',
+          Sub_Module_Name_EN: 'Cloud',
+          Module_ID: '5',
+          Status: 'N',
+          Created_DT: '24-05-2022',
+          creation_by: '10-08-2024'
+        },
+        {
+          id: '5',
+          Sub_Module_ID: '5',
+          Sub_Module_Name_EN: 'Storm',
+          Module_ID: '6',
+          Status: 'Y',
+          Created_DT: '25-06-2022',
+          creation_by: '11-08-2024'
+        },
+        {
+          id: '6',
+          Sub_Module_ID: '6',
+          Sub_Module_Name_EN: 'Fog',
+          Module_ID: '7',
+          Status: 'N',
+          Created_DT: '26-07-2022',
+          creation_by: '12-08-2024'
+        },
+        {
+          id: '7',
+          Sub_Module_ID: '7',
+          Sub_Module_Name_EN: 'Hail',
+          Module_ID: '8',
+          Status: 'Y',
+          Created_DT: '27-08-2022',
+          creation_by: '13-08-2024'
+        },
+        {
+          id: '8',
+          Sub_Module_ID: '8',
+          Sub_Module_Name_EN: 'Wind',
+          Module_ID: '9',
+          Status: 'N',
+          Created_DT: '28-09-2022',
+          creation_by: '14-08-2024'
+        },
+        {
+          id: '9',
+          Sub_Module_ID: '9',
+          Sub_Module_Name_EN: 'Thunder',
+          Module_ID: '10',
+          Status: 'Y',
+          Created_DT: '29-10-2022',
+          creation_by: '15-08-2024'
+        },
+        {
+          id: '10',
+          Sub_Module_ID: '10',
+          Sub_Module_Name_EN: 'Lightning',
+          Module_ID: '11',
+          Status: 'N',
+          Created_DT: '30-11-2022',
+          creation_by: '16-08-2024'
+        }
+      ];
+  
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
