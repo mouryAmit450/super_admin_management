@@ -4,9 +4,9 @@ import React from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import { useState } from "react";
 import {
   Typography,
@@ -245,45 +245,48 @@ function Module() {
   };
   return (
     <Card
-    sx={{
-      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05)',
-      borderRadius: '8px',
-      overflow: 'hidden', 
-    }}>
+      sx={{
+        boxShadow:
+          "0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05)",
+        borderRadius: "8px",
+        overflow: "hidden",
+      }}
+    >
       <CardContent>
-      <Container
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "20px",
-        }}
-      >
-        <Typography variant="h6" sx={{fontWeight:'bold'}}>Modules</Typography>
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>
-          Add Module
-        </Button>
-      </Container>
-      <MUITable rows={rows} columns={columns} />
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>
-          <Typography
-            variant="h5"
-            sx={{
-              backgroundColor: "#2947A3",
-              color: "white",
-              padding: "10px",
-              borderRadius: "5px",
-              justifySelf: "end",
-            }}
-          >
-            Add Module
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "20px",
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Modules
           </Typography>
-        </DialogTitle>
-        <DialogContent>{<Form />}</DialogContent>
-        <DialogActions></DialogActions>
-      </Dialog>
+          <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            Add Module
+          </Button>
+        </Container>
+        <MUITable rows={rows} columns={columns} />
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+          <DialogTitle>
+            <Typography
+              variant="h5"
+              sx={{
+                backgroundColor: "#2947A3",
+                color: "white",
+                padding: "10px",
+                borderRadius: "5px",
+                justifySelf: "end",
+              }}
+            >
+              Add Module
+            </Typography>
+          </DialogTitle>
+          <DialogContent>{<Form />}</DialogContent>
+          <DialogActions></DialogActions>
+        </Dialog>
       </CardContent>
-
     </Card>
   );
 }

@@ -11,9 +11,7 @@ export default function MUITable(props: any) {
   return (
     <Box
       sx={{
-        height: 600,
         fontWeight: 'bold',   
-
         maxWidthwidth: "90%",
         '& .super-app-theme--header': {
           backgroundColor: '#2947A3',
