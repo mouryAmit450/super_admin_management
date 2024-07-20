@@ -13,8 +13,10 @@ import {
   Grid,
 } from "@mui/material";
 import MUITable from "@/components/datatable";
-
-const Audit = () => {
+import {auditReport} from '../../../../../../service/report'
+const Audit =async () => {
+  const data = await auditReport()
+  console.log('thi is data',data)
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
 
@@ -207,9 +209,9 @@ const Audit = () => {
             sx={{ paddingLeft: "5px" }}
           />
         </Box>
-        <Grid container sx={{ overflow: 'auto', width: '900px' }}>
+        <Box sx={{ overflow: 'auto', width: '900px' }}>
           <MUITable rows={filteredRows} columns={columns} />
-        </Grid>
+        </Box>
       </CardContent>
     </Card>
   );
