@@ -182,7 +182,7 @@ function AuditReport() {
           margin: "20px",
         }}
       >
-        <Typography variant="h6"> Role Assignment</Typography>
+        <Typography variant="h6" sx={{fontWeight:'bold'}}> Audit Report</Typography>
         {/* <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Add Role Assignment
         </Button> */}
@@ -191,7 +191,7 @@ function AuditReport() {
       <MUITable rows={rows} columns={columns} />
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
-          {/* <Typography
+          <Typography
             variant="h5"
             sx={{
               backgroundColor: "#2947A3",
@@ -203,7 +203,7 @@ function AuditReport() {
             }}
           >
             Add Role Assignment
-          </Typography> */}
+          </Typography>
         </DialogTitle>
         {/* <DialogContent>{<Form />}</DialogContent> */}
       </Dialog>
