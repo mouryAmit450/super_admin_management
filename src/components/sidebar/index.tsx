@@ -1,6 +1,8 @@
 "use client";
 import * as React from "react";
 import { styled } from "@mui/system";
+
+
 import {
   Accordion,
   AccordionSummary,
@@ -18,37 +20,51 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
   marginTop: "23px",
   position: "relative",
   top: 0,
+  // height: "100vh",
+
   height: "calc(100vh - 23px)",
-  // overflowY: "auto",
   backgroundColor: "#fff",
   zIndex: 1000,
+  overflowY: "auto",
   "& .accordion": {
     boxShadow: "none",
-    "&:not(:last-child)": {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
+    // "&:not(:last-child)": {
+    //   borderBottom: `1px solid ${theme.palette.divider}`,
+    // },
   },
   "& .accordionSummary": {
-    backgroundColor: colors.primary,
-    color: theme.palette.primary.contrastText,
+    backgroundColor:'#eaeef5 ',
+    color: '#2947A3',
   },
   "& .accordionDetails": {
     display: "flex",
     flexDirection: "column",
-    padding: "1px 4px 0px",
+    padding: "0 8px",
+
   },
   "& .nestedItem": {
-    padding: 10,
+    padding: "10px 16px",
     textDecoration: "none",
-    transition: "background-color 0.3s, color 0.3s", // Smooth color transition
+    color: theme.palette.text.primary,
+    borderBottom: `1px solid ${theme.palette.divider}`, // Add bottom border
+
+    transition: "background-color 0.3s, color 0.3s",
     "&:hover": {
-      color: "#2947A3", // Change text color on hover
+      color: "#2947A3",
+      backgroundColor:' #eaeef5',
     },
     "&:active": {
-      color: "#333", // Change text color on click
+      color: "#333",
+    },
+  },
+  "& .subAccordion": {
+    width: "100%",
+    "& .accordionDetails": {
+      paddingLeft: "24px",
     },
   },
 }));
+
 
 const sidebarData = [
   {
@@ -64,7 +80,9 @@ const sidebarData = [
   {
     name: "Users",
     items: [
-      { name: "Add New", link: "/dashboard/users" },
+      
+
+      {  name: "Add New", link: "/dashboard/users" },
       { name: "Role Assignment", link: "/dashboard/role-assignment" },
       { name: "Change Password", link: "/dashboard/change-password" }
     ],
@@ -72,9 +90,20 @@ const sidebarData = [
   {
     name: "Reports",
     items: [
-      { name: "Audit Report", link: "/dashboard/reports/audit-report" },
-      { name: "Candidate Report", link: "/dashboard/reports/candidate-report" },
-      ,
+      {
+        name: "OTR",
+        items: [
+          { name: "Audit Reports", link: "/dashboard/reports/audit-report" },
+          { name: "Candidate Report ", link: "/dashboard/reports/candidate-report" },
+        ],
+      },
+      // {
+      //   name: "ORA",
+      //   items: [
+      //     { name: "ORA Sub Report 1", link: "/dashboard/reports/ora/sub-report-1" },
+      //     { name: "ORA Sub Report 2", link: "/dashboard/reports/ora/sub-report-2" },
+      //   ],
+      // },
     ],
   },
   {
@@ -87,24 +116,47 @@ const sidebarData = [
   },
 ];
 
+
 const Sidebar = () => {
   return (
     <SidebarWrapper>
       {sidebarData.map((item, index) => (
-        <Accordion className="accordion" key={index}>
+        <Accordion className="accordion" 
+        key={index}
+        
+        >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+            expandIcon={<ExpandMoreIcon style={{ color: '#2947A3' }} />}
             className="accordionSummary"
           >
             <Typography>{item.name}</Typography>
           </AccordionSummary>
-          {item.items.map((route, index) => (
-            <AccordionDetails className="accordionDetails" key={index}>
-              <Link href={route.link} style={{ textDecoration: "none" }}>
-                <Typography className="nestedItem">{route.name}</Typography>
-              </Link>
-            </AccordionDetails>
-          ))}
+          <AccordionDetails className="accordionDetails">
+            {item.items.map((route, subIndex) => {
+              if (route.items) {
+                return (
+                  <Accordion className="subAccordion" key={subIndex}>
+                    <AccordionSummary
+ expandIcon={<ExpandMoreIcon sx={{ color: "#2947A3" }} />}                    >
+                      <Typography>{route.name}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      {route.items.map((subRoute, nestedIndex) => (
+                        <Link href={subRoute.link} key={nestedIndex} style={{ textDecoration: "none" }}>
+                          <Typography className="nestedItem">{subRoute.name}</Typography>
+                        </Link>
+                      ))}
+                    </AccordionDetails>
+                  </Accordion>
+                );
+              }
+              return (
+                <Link href={route.link} key={subIndex} style={{ textDecoration: "none" }}>
+                  <Typography className="nestedItem">{route.name}</Typography>
+                </Link>
+              );
+            })}
+          </AccordionDetails>
         </Accordion>
       ))}
     </SidebarWrapper>
