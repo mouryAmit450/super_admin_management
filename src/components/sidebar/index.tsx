@@ -9,18 +9,19 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+
 import { colors } from "@/utils/colors";
 import { SidebarData } from "@/types/sidebarType";
 
 const SidebarWrapper = styled("div")(({ theme }) => ({
   width: "20%",
   marginTop: "23px",
-  position: "sticky",
+  position: "relative",
   top: 0,
-  height: "calc(100vh - 23px)", 
+  height: "calc(100vh - 23px)",
   // overflowY: "auto",
   backgroundColor: "#fff",
-  zIndex: 1000, 
+  zIndex: 1000,
   "& .accordion": {
     boxShadow: "none",
     "&:not(:last-child)": {
@@ -71,10 +72,9 @@ const sidebarData = [
   {
     name: "Reports",
     items: [
-      { name: "Candidate Reports", link: "/dashboard/candidate-reports" },
-      { name: "Exam Reports", link: "/dashboard/exam-reports" },
-      { name: "Soap", link: "/dashboard/soap" },
-      { name: "Ora", link: "/dashboard/ora" },
+      { name: "Audit Report", link: "/dashboard/reports/audit-report" },
+      { name: "Candidate Report", link: "/dashboard/reports/candidate-report" },
+      ,
     ],
   },
   {
