@@ -312,7 +312,7 @@ function Roles() {
     }}>
       <CardContent>
    <Container sx={{display:'flex', justifyContent:"space-between", margin:'20px'}}>
-      <Typography variant="h6" sx={{fontWeight:'bold'}}  component="div">
+      <Typography variant="h6" sx={{fontWeight:'bold'}} >
         Roles
       </Typography>
       <Button variant="contained" color="primary"  onClick={handleClickOpen}>

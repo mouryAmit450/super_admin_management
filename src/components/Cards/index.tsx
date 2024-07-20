@@ -10,10 +10,10 @@ export default function Cards() {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" >
           Total User
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" >
           10244
         </Typography>
         <Typography variant="body2" color="text.secondary">

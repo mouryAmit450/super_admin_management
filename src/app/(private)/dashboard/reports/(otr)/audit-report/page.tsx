@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import {
   Card,
@@ -13,147 +13,349 @@ import {
   Grid,
 } from "@mui/material";
 import MUITable from "@/components/datatable";
-import {auditReport} from '../../../../../../service/report'
-const Audit =async () => {
-  const data = await auditReport()
-  console.log('thi is data',data)
+import { auditReport } from "@/services/report";
+
+type TransformedData = {
+  id: number;
+  candidateNameEn: string;
+  genderId: string;
+  genderNameEn: string;
+  candidateDateOfBirth: string;
+  singleParentId: string;
+  singleParentNameEn: string;
+  minorityCategoryFlag: string;
+  minorityCategoryId: string;
+  minorityCategoryNameEn: string;
+  FatherName: string;
+  MotherName: string;
+  qualificationId: string;
+  qualificationNameEn: string;
+  boardUniversityId: string;
+  boardUniversityName: string;
+  boardUniversityOthName: string;
+  boardUniversityType: string;
+  qualificationPassingYear: string;
+  qualificationRollNo: string;
+  candidateMobile: string;
+  mobileAlternate: string;
+  candidateEmail: string;
+  candidatePassword: string;
+  firstTimeLogin: boolean;
+  roleId: string;
+  userId: string;
+  ipAddress: string;
+};
+
+const auditLogs = [
+  {
+    id: Math.floor(Math.random() * 100),
+    step1: {
+      _id: "669a1eefc81a8bcb003c9570",
+      moduleId: "OTR",
+      moduleSubId: "Candidate Registration",
+      requestPayload: {
+        candidatePersonalDetails: {
+          candidateNameEn: "SARVESH GUPTA",
+          genderId: "",
+          genderNameEn: "Male",
+          candidateDateOfBirth: "1997-01-13",
+          singleParentId: "",
+          singleParentNameEn: "no",
+        },
+        candidateMinorityDetails: {
+          minorityCategoryFlag: "N",
+          minorityCategoryId: "",
+          minorityCategoryNameEn: "",
+        },
+        candidateParentDetails: [
+          {
+            familyMemberId: "1",
+            familyTypeId: "1",
+            familyTypeNameEn: "Father",
+            familyMemberName: "KRISHAN GUPTA",
+            familyMemberGenderId: "1",
+            familyMemberGenderNameEn: "Male",
+          },
+          {
+            familyMemberId: "2",
+            familyTypeId: "2",
+            familyTypeNameEn: "Mother",
+            familyMemberName: "PINKI GUPTA",
+            familyMemberGenderId: "2",
+            familyMemberGenderNameEn: "Female",
+          },
+        ],
+      },
+      roleId: "",
+      userId: "",
+      ipAddress: "14.102.117.50",
+    },
+    step2: {
+      _id: "669a1ef7c81a8bcb003c9573",
+      moduleId: "OTR",
+      moduleSubId: "Candidate Registration",
+      requestPayload: {
+        candidateEducationQualification: {
+          qualificationId: "1",
+          qualificationNameEn: "10th Board",
+          boardUniversityId: "34",
+          boardUniversityName:
+            "STATE BOARD OF SCHOOL EXAMINATIONS(SEC.) & BOARD OF HIGHER SECONDARY EXAMINATIONS, TAMIL NADU",
+          boardUniversityOthName: "",
+          boardUniversityType: "SB",
+          qualificationPassingYear: "2015",
+          qualificationRollNo: "1103636737",
+        },
+      },
+      roleId: "",
+      userId: "",
+      ipAddress: "14.102.117.50",
+    },
+    step3: {
+      _id: "669a1f1ac81a8bcb003c957d",
+      moduleId: "OTR",
+      moduleSubId: "Candidate Registration",
+      requestPayload: {
+        candidateContactDetails: {
+          candidateMobile: "8826107920",
+          mobileAlternate: "",
+          candidateEmail: "sarveshgupta14@gmail.com",
+          candidatePassword: "Email@123",
+          firstTimeLogin: true,
+        },
+      },
+      roleId: "",
+      userId: "",
+      ipAddress: "14.102.117.50",
+    },
+  },
+];
+
+function transformAuditLog(auditLog: any): TransformedData {
+  const step1 = auditLog.step1.requestPayload;
+  const step2 = auditLog.step2.requestPayload;
+  const step3 = auditLog.step3.requestPayload;
+
+  return {
+    id: Math.floor(Math.random() * 1000),
+    candidateNameEn: step1?.candidatePersonalDetails?.candidateNameEn ?? "",
+    genderId: step1?.candidatePersonalDetails?.genderId ?? "",
+    genderNameEn: step1?.candidatePersonalDetails?.genderNameEn ?? "",
+    candidateDateOfBirth:
+      step1?.candidatePersonalDetails?.candidateDateOfBirth ?? "",
+    singleParentId: step1?.candidatePersonalDetails?.singleParentId ?? "",
+    singleParentNameEn:
+      step1?.candidatePersonalDetails?.singleParentNameEn ?? "",
+    minorityCategoryFlag:
+      step1?.candidateMinorityDetails?.minorityCategoryFlag ?? "",
+    minorityCategoryId:
+      step1?.candidateMinorityDetails?.minorityCategoryId ?? "",
+    minorityCategoryNameEn:
+      step1?.candidateMinorityDetails?.minorityCategoryNameEn ?? "",
+    FatherName:
+      step1?.candidatePersonalDetails?.candidateParentDetails?.find(
+        (parent: any) => parent.familyTypeNameEn === "Father"
+      )?.familyMemberName ?? "",
+    MotherName:
+      step1?.candidatePersonalDetails?.candidateParentDetails?.find(
+        (parent: any) => parent.familyTypeNameEn === "Mother"
+      )?.familyMemberName ?? "mother ji",
+    qualificationId:
+      step2?.candidateEducationQualification?.qualificationId ?? "",
+    qualificationNameEn:
+      step2?.candidateEducationQualification?.qualificationNameEn ?? "",
+    boardUniversityId:
+      step2?.candidateEducationQualification?.boardUniversityId ?? "",
+    boardUniversityName:
+      step2?.candidateEducationQualification?.boardUniversityName ?? "",
+    boardUniversityOthName:
+      step2?.candidateEducationQualification?.boardUniversityOthName ?? "",
+    boardUniversityType:
+      step2?.candidateEducationQualification?.boardUniversityType ?? "",
+    qualificationPassingYear:
+      step2?.candidateEducationQualification?.qualificationPassingYear ?? "",
+    qualificationRollNo:
+      step2?.candidateEducationQualification?.qualificationRollNo ?? "",
+    candidateMobile: step3?.candidateContactDetails?.candidateMobile ?? "",
+    mobileAlternate: step3?.candidateContactDetails?.mobileAlternate ?? "",
+    candidateEmail: step3?.candidateContactDetails?.candidateEmail ?? "",
+    candidatePassword: step3?.candidateContactDetails?.candidatePassword ?? "",
+    firstTimeLogin: step3?.candidateContactDetails?.firstTimeLogin ?? false,
+    roleId: auditLog.step1.roleId ?? "",
+    userId: auditLog.step1.userId ?? "",
+    ipAddress: auditLog.step1.ipAddress ?? "",
+  };
+}
+
+const transformedData = auditLogs.map(transformAuditLog);
+
+const columns: GridColDef[] = [
+  {
+    field: "candidateNameEn",
+    headerName: "Candidate Name (En)",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "genderId",
+    headerName: "Gender ID",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "genderNameEn",
+    headerName: "Gender Name (En)",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "candidateDateOfBirth",
+    headerName: "Date of Birth",
+    width: 120,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "singleParentId",
+    headerName: "Single Parent ID",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "singleParentNameEn",
+    headerName: "Single Parent Name (En)",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "minorityCategoryFlag",
+    headerName: "Minority Flag",
+    width: 120,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "minorityCategoryId",
+    headerName: "Minority Category ID",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "minorityCategoryNameEn",
+    headerName: "Minority Category Name (En)",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "FatherName",
+    headerName: "Father Name",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "MotherName",
+    headerName: "Mother Name",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "qualificationId",
+    headerName: "Qualification ID",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "qualificationNameEn",
+    headerName: "Qualification Name (En)",
+    width: 200,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "boardUniversityId",
+    headerName: "Board University ID",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "boardUniversityName",
+    headerName: "Board University Name",
+    width: 350,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "boardUniversityOthName",
+    headerName: "Board University Other Name",
+    width: 220,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "boardUniversityType",
+    headerName: "Board University Type",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "qualificationPassingYear",
+    headerName: "Passing Year",
+    width: 130,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "qualificationRollNo",
+    headerName: "Roll No",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "candidateMobile",
+    headerName: "Mobile",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "mobileAlternate",
+    headerName: "Alternate Mobile",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "candidateEmail",
+    headerName: "Email",
+    width: 200,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "candidatePassword",
+    headerName: "Password",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "firstTimeLogin",
+    headerName: "First Time Login",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "roleId",
+    headerName: "Role ID",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "userId",
+    headerName: "User ID",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "ipAddress",
+    headerName: "IP Address",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+];
+export default function Audit() {
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
-
-  const columns: GridColDef<(typeof rows)[number]>[] = [
-    { field: 'otrId', headerName: 'OTR ID', width: 150, headerClassName: "super-app-theme--header" },
-    { field: 'candidateNameEn', headerName: 'Candidate Name', width: 200, headerClassName: "super-app-theme--header" },
-    { field: 'genderNameEn', headerName: 'Gender', width: 100, headerClassName: "super-app-theme--header" },
-    { field: 'candidateDateOfBirth', headerName: 'Date of Birth', width: 150, headerClassName: "super-app-theme--header" },
-    { field: 'singleParentNameEn', headerName: 'Single Parent', width: 150, headerClassName: "super-app-theme--header" },
-    { field: 'minorityCategoryFlag', headerName: 'Minority Flag', width: 150, headerClassName: "super-app-theme--header" },
-    { field: 'familyTypeNameEn', headerName: 'Family Type', width: 150, headerClassName: "super-app-theme--header" },
-    { field: 'familyMemberName', headerName: 'Family Member Name', width: 200, headerClassName: "super-app-theme--header" },
-    { field: 'familyMemberGenderNameEn', headerName: 'Family Member Gender', width: 200, headerClassName: "super-app-theme--header" },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      otrId: "124000000004071",
-      candidateNameEn: "SARVESH GUPTA",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1997-01-13",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "KRISHAN GUPTA",
-      familyMemberGenderNameEn: "Male",
-    },
-    {
-      id: 2,
-      otrId: "124000000004072",
-      candidateNameEn: "PRIYA SINGH",
-      genderNameEn: "Female",
-      candidateDateOfBirth: "1995-06-21",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Mother",
-      familyMemberName: "ANITA SINGH",
-      familyMemberGenderNameEn: "Female",
-    },
-    {
-      id: 3,
-      otrId: "124000000004073",
-      candidateNameEn: "ROHAN VERMA",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1998-04-11",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "RAKESH VERMA",
-      familyMemberGenderNameEn: "Male",
-    },
-    {
-      id: 4,
-      otrId: "124000000004074",
-      candidateNameEn: "ANJALI SHARMA",
-      genderNameEn: "Female",
-      candidateDateOfBirth: "1999-09-30",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Mother",
-      familyMemberName: "SUNITA SHARMA",
-      familyMemberGenderNameEn: "Female",
-    },
-    {
-      id: 5,
-      otrId: "124000000004075",
-      candidateNameEn: "AMAN KUMAR",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1996-12-19",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "RAHUL KUMAR",
-      familyMemberGenderNameEn: "Male",
-    },
-    {
-      id: 6,
-      otrId: "124000000004076",
-      candidateNameEn: "RAHUL MEHTA",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1994-05-17",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "MOHAN MEHTA",
-      familyMemberGenderNameEn: "Male",
-    },
-    {
-      id: 7,
-      otrId: "124000000004077",
-      candidateNameEn: "SNEHA PATEL",
-      genderNameEn: "Female",
-      candidateDateOfBirth: "1993-07-24",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Mother",
-      familyMemberName: "MEENA PATEL",
-      familyMemberGenderNameEn: "Female",
-    },
-    {
-      id: 8,
-      otrId: "124000000004078",
-      candidateNameEn: "VIJAY RAO",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1992-03-15",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "SUNIL RAO",
-      familyMemberGenderNameEn: "Male",
-    },
-    {
-      id: 9,
-      otrId: "124000000004079",
-      candidateNameEn: "NISHA YADAV",
-      genderNameEn: "Female",
-      candidateDateOfBirth: "1991-11-05",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Mother",
-      familyMemberName: "HEMA YADAV",
-      familyMemberGenderNameEn: "Female",
-    },
-    {
-      id: 10,
-      otrId: "124000000004080",
-      candidateNameEn: "ARJUN CHOPRA",
-      genderNameEn: "Male",
-      candidateDateOfBirth: "1990-08-29",
-      singleParentNameEn: "no",
-      minorityCategoryFlag: "N",
-      familyTypeNameEn: "Father",
-      familyMemberName: "VIKRAM CHOPRA",
-      familyMemberGenderNameEn: "Male",
-    },
-  ];
 
   const handleSearchChange = (event: any) => {
     setSearchText(event.target.value);
@@ -163,19 +365,26 @@ const Audit =async () => {
     setRoleFilter(event.target.value);
   };
 
+  useEffect(() => {
+    auditReport();
+  }, []);
+
   const filteredRows = useMemo(() => {
-    return rows.filter((row) => {
+    return transformedData.filter((row) => {
       const matchesSearchText = searchText
         ? Object.values(row).some((value) =>
             value.toString().toLowerCase().includes(searchText.toLowerCase())
           )
         : true;
       const matchesRoleFilter = roleFilter
-        ? row[roleFilter as keyof typeof row].toString().toLowerCase().includes(searchText.toLowerCase())
+        ? row[roleFilter as keyof typeof row]
+            .toString()
+            .toLowerCase()
+            .includes(searchText.toLowerCase())
         : true;
       return matchesSearchText && matchesRoleFilter;
     });
-  }, [rows, searchText, roleFilter]);
+  }, [transformedData, searchText, roleFilter]);
 
   return (
     <Card
@@ -190,7 +399,11 @@ const Audit =async () => {
         <Box sx={{ display: "flex", mb: 2, padding: "15px 10px 0 10px" }}>
           <FormControl variant="outlined" sx={{ width: "200px" }}>
             <InputLabel>Filter By</InputLabel>
-            <Select value={roleFilter} onChange={handleFilterChange} label="Role">
+            <Select
+              value={roleFilter}
+              onChange={handleFilterChange}
+              label="Role"
+            >
               <MenuItem value="">
                 <em>All</em>
               </MenuItem>
@@ -209,12 +422,10 @@ const Audit =async () => {
             sx={{ paddingLeft: "5px" }}
           />
         </Box>
-        <Box sx={{ overflow: 'auto', width: '900px' }}>
+        <Box sx={{ overflow: "auto", width: "900px" }}>
           <MUITable rows={filteredRows} columns={columns} />
         </Box>
       </CardContent>
     </Card>
   );
-};
-
-export default Audit;
+}

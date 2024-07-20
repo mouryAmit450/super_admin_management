@@ -1,5 +1,5 @@
 async function auditReport() {
-    const res = await fetch(process.env.LOCAL_URL+'master_data/auditlogs')
+    const res = await fetch('https://fakestoreapi.com/products')
     if (!res.status === 200) {
       throw new Error('Failed to fetch data')
     }

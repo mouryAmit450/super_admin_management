@@ -63,7 +63,6 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-
 const sidebarData = [
   {
     name: "Masters",
@@ -78,9 +77,7 @@ const sidebarData = [
   {
     name: "Users",
     items: [
-      
-
-      {  name: "Add New", link: "/dashboard/users" },
+      { name: "Add New", link: "/dashboard/users" },
       { name: "Role Assignment", link: "/dashboard/role-assignment" },
       { name: "Change Password", link: "/dashboard/change-password" },
     ],
@@ -117,15 +114,11 @@ const sidebarData = [
   },
 ];
 
-
 const Sidebar = () => {
   return (
     <SidebarWrapper>
       {sidebarData.map((item, index) => (
-        <Accordion className="accordion" 
-        key={index}
-        
-        >
+        <Accordion className="accordion" key={index}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{ color: "#2947A3" }} />}
             className="accordionSummary"
