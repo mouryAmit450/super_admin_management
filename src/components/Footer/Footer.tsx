@@ -24,8 +24,8 @@ const FooterStyle = styled(Box)(({ theme }) => ({
   padding: "60px 0",
   width: "100%",
   height: 'auto',
-  position: "sticky",
-  bottom: 0,
+  position: "relative",
+  // bottom: 0,
   boxSizing: "border-box",
   ul: {
     margin: 0,
@@ -170,7 +170,7 @@ const Footer = memo(() => {
                 Dholpur House, Shahajahan Road, New Delhi - 110069
               </Typography>
             </Box>
-            <Box  className="visit">
+            <Box className="visit">
               <Box>
                 <Typography variant="h2">Your System IP Address:</Typography>
                 <Typography variant="h2" className="mt-3">

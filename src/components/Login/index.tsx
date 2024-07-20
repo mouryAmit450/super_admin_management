@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext/AuthContext";
 // @ts-ignore
-import  Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 // @ts-ignore
 import Captcha from "demos-react-captcha";
 import { colors } from "@/utils/colors";
@@ -105,7 +105,7 @@ const Login = () => {
       [name]: value,
     }));
   };
-  
+
   const handleLogin = async () => {
     Cookies.set('token', 'dummytoken')
     router.push('/dashboard')
@@ -184,11 +184,11 @@ const Login = () => {
       <Grid xs={12} sm={12} md={6} lg={6}>
         <Box
           sx={{
-            paddingBottom: "40px",
+            padding: "10px",
             borderRadius: "4px 4px 4px 4px",
             justifyContent: "center",
             alignItems: "center",
-            marginBottom: "20px",
+            margin: "20px 0",
             mx: "auto",
             boxShadow:
               "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;",
@@ -357,7 +357,7 @@ const Login = () => {
                       width: "25%",
                       height: "41px",
                       borderRadius: "0 4px 4px 0",
-                      backgroundColor:colors.primary
+                      backgroundColor: colors.primary
                     }}
                     variant="contained"
                     size="medium"
@@ -469,7 +469,7 @@ const Login = () => {
                       width: "25%",
                       height: "41px",
                       borderRadius: "0 4px 4px 0",
-                      backgroundColor:colors.primary
+                      backgroundColor: colors.primary
                     }}
                     variant="contained"
                     size="medium"
@@ -559,10 +559,10 @@ const Login = () => {
                 {showText === null
                   ? null
                   : !showText && (
-                      <span style={{ color: "red" }}>
-                        Please enter valid captcha
-                      </span>
-                    )}
+                    <span style={{ color: "red" }}>
+                      Please enter valid captcha
+                    </span>
+                  )}
               </Box>
               {/* <TextField
                   size="small"
@@ -589,7 +589,7 @@ const Login = () => {
               variant="contained"
               fullWidth
               onClick={alignment === "1" ? handleLogin : handleVerifyOtp}
-              sx={{backgroundColor:colors.primary}}
+              sx={{ backgroundColor: colors.primary }}
             >
               LOGIN
             </Button>
