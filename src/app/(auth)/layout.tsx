@@ -27,17 +27,16 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box
+            <Grid container
               display="flex"
               flexDirection="column"
-              minHeight="100vh"
             >
               <Header />
-              <Box component="main" flexGrow={1}>
+              <Box sx={{minHeight:'100vh'}}>
                 {children}
               </Box>
               <Footer />
-            </Box>
+            </Grid>
           </ThemeProvider>
         </AuthProvider>
       </body>

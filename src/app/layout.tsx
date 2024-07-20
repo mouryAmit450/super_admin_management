@@ -16,17 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <title>My App</title>
-        <meta name="description" content="My App Description" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
+      <head />
       <body>
         <AuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Grid container direction="column">
-              <Box sx={{ flex: 1, padding: 5 }}>{children}</Box>
+              <Box>{children}</Box>
             </Grid>
           </ThemeProvider>
         </AuthProvider>

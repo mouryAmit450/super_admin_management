@@ -25,7 +25,6 @@ const FooterStyle = styled(Box)(({ theme }) => ({
   width: "100%",
   height: 'auto',
   position: "sticky",
-  bottom: 0,
   boxSizing: "border-box",
   ul: {
     margin: 0,
@@ -120,7 +119,7 @@ const FooterStyle = styled(Box)(({ theme }) => ({
     ".responsive-row": {
       flexDirection: "column",
       textAlign: "left",
-      margin: "0 20px",
+      margin: "0 0px",
     },
   },
 }));
@@ -133,7 +132,7 @@ const Footer = memo(() => {
       <Container maxWidth="lg">
         <Grid
           container
-          spacing={3}
+          // spacing={3}
           className="responsive-row"
           sx={{
             display: "flex",
