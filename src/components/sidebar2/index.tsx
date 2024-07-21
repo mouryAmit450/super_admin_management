@@ -65,56 +65,23 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
 
 const sidebarData = [
   {
-    name: "Masters",
-    items: [
-      { name: "Department", link: "/dashboard/department" },
-      { name: "Designation", link: "/dashboard/designation" },
-      { name: "Roles", link: "/dashboard/roles" },
-      { name: "Module", link: "/dashboard/module" },
-      { name: "Sub Module", link: "/dashboard/sub-module" },
-    ],
-  },
-  {
-    name: "Users",
-    items: [
-      { name: "Add New", link: "/dashboard/users" },
-      { name: "Role Assignment", link: "/dashboard/role-assignment" },
-      { name: "Change Password", link: "/dashboard/change-password" },
-    ],
-  },
-  {
     name: "Reports",
     items: [
-      // {
-      //   name: "OTR",
-      //   items: [
-      //     { name: "Audit Reports", link: "/dashboard/reports/audit-report" },
-      //     {
-      //       name: "Candidate Report ",
-      //       link: "/dashboard/reports/candidate-report",
-      //     },
-      //   ],
-      // },
       {
-        name: "ORA",
+        name: "OTR",
         items: [
-          { name: "ORA Sub Report 1", link: "/dashboard/reports/ora/sub-report-1" },
-          { name: "ORA Sub Report 2", link: "/dashboard/reports/ora/sub-report-2" },
+          { name: "Audit Reports", link: "/dashboard/reports/audit-report" },
+          {
+            name: "Candidate Report ",
+            link: "/dashboard/reports/candidate-report",
+          },
         ],
       },
     ],
   },
-  {
-    name: "Logs",
-    items: [
-      { name: "Sms", link: "/dashboard/sms" },
-      { name: "Email", link: "/dashboard/email" },
-      { name: "Bank Payment", link: "/dashboard/bank-payment" },
-    ],
-  },
 ];
 
-const Sidebar = () => {
+const Sidebar2 = () => {
   return (
     <SidebarWrapper>
       {sidebarData.map((item, index) => (
@@ -168,4 +135,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Sidebar2;

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -9,58 +9,65 @@ import Container from "@mui/material/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { upscLogo } from "@/assets/images";
-
+import { Button } from "@mui/material";
+import { removeCookies } from "@/utils/cookies";
+import Cookies from 'js-cookie'
+// import { cookies } from "next/headers";
 const HeaderWrapper = styled(Box)(({ theme }) => ({
-  width: '100%',
+  width: "100%",  
   background: "#2947A3",
-  padding: '10px 2px',
-  
-  '& .appBar': {
-    boxShadow: 'none',
-    backgroundColor: '#2947A3',
+  padding: "10px 2px",
+
+  "& .appBar": {
+    boxShadow: "none",
+    backgroundColor: "#2947A3",
   },
-  '& .toolbar': {
+  "& .toolbar": {
     // paddingLeft: '0!important',
-    paddingRight: '0!important',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-    paddingLeft: '5px',
+    paddingRight: "0!important",
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    paddingLeft: "5px",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  '& .logoBox': {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-    paddingLeft: '5px',
+  "& .logoBox": {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    paddingLeft: "5px",
   },
-  '& .mainTypography': {
-    color: '#FFF',
-    textAlign: 'left',
-    fontFamily: 'DevLys 010 Thin',
+  "& .mainTypography": {
+    color: "#FFF",
+    textAlign: "left",
+    fontFamily: "DevLys 010 Thin",
     fontSize: theme.typography.pxToRem(22),
-    fontStyle: 'normal',
+    fontStyle: "normal",
     fontWeight: 400,
-    lineHeight: '30px',
-    [theme.breakpoints.down('sm')]: {
+    lineHeight: "30px",
+    [theme.breakpoints.down("sm")]: {
       fontSize: theme.typography.pxToRem(14),
     },
   },
-  '& .subTypography': {
-    color: '#FFF',
-    textAlign: 'left',
-    fontFamily: 'Roboto',
+  "& .subTypography": {
+    color: "#FFF",
+    textAlign: "left",
+    fontFamily: "Roboto",
     fontSize: theme.typography.pxToRem(24),
-    fontStyle: 'normal',
+    fontStyle: "normal",
     fontWeight: 900,
-    lineHeight: '30px',
-    textTransform: 'uppercase',
-    [theme.breakpoints.down('sm')]: {
+    lineHeight: "30px",
+    textTransform: "uppercase",
+    [theme.breakpoints.down("sm")]: {
       fontSize: theme.typography.pxToRem(14),
     },
   },
 }));
 
 export default function Header() {
+  const token :any =Cookies.get('token')
+  console.log('this is token',token)
   return (
     <HeaderWrapper>
       <Container>
@@ -68,11 +75,7 @@ export default function Header() {
           <Toolbar className="toolbar">
             <Box className="logoBox">
               <Link href="/">
-                <Image
-                  src={upscLogo}
-                  alt="LOGO"
-                  style={{ height: "60px" }}
-                />
+                <Image src={upscLogo} alt="LOGO" style={{ height: "60px" }} />
               </Link>
               <Typography variant="h1" className="mainTypography">
                 संघ लोक सेवा आयोग
@@ -81,6 +84,16 @@ export default function Header() {
                 </Typography>
               </Typography>
             </Box>
+           {token && <Box>
+              <Button
+                variant="outlined"
+                sx={{ color: "white", borderColor: "#fff" }}
+                onClick={removeCookies}
+              >
+                Logout
+              </Button>
+            </Box>}
+
             <Box sx={{ flexGrow: 1 }} />
           </Toolbar>
         </AppBar>

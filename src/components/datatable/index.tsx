@@ -21,7 +21,7 @@ export default function MUITable(props: any) {
       <DataGrid
         rows={rows}
         columns={columns}
-        getRowId={(row) => row.id}
+        getRowId={(row) => row._id}
         initialState={{
           pagination: {
             paginationModel: {

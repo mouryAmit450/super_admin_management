@@ -8,6 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/sidebar";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Sidebar2 from "@/components/sidebar2";
 export default function RootLayout({
   children,
 }: {
@@ -15,6 +16,7 @@ export default function RootLayout({
 }) {
 
   const token :any =cookies().get('token')
+  const type :any =cookies().get('type')
   if(!token?.value){
     redirect('/')
   }
@@ -29,7 +31,7 @@ export default function RootLayout({
               <Header />
             </Box>
             <Box sx={{ display: "flex", flex: 1, marginTop: "64px" }}>
-              <Sidebar />
+              {type?.value === '1' ?<Sidebar />:<Sidebar2 />}
               <Box sx={{ flex: 1, padding: 5 }}>
                 {children}
               </Box>

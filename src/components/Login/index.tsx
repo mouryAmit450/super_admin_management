@@ -130,8 +130,19 @@ const Login = () => {
     }));
   };
   const handleLogin = async () => {
-    Cookies.set('token' , 'dummyToken')
-    router.push('/dashboard')
+    if(forms.userId === '123456' && forms.candidatePassword === '123456'){
+      Cookies.set('token' , 'dummyToken')
+      Cookies.set('type','1')
+      router.push('/dashboard')
+    }
+    else if(forms.userId === '654321' && forms.candidatePassword === '654321'){
+      Cookies.set('token' , 'dummyToken')
+      Cookies.set('type','2')
+      router.push('/dashboard/reports/audit-report')
+    }
+    else{
+      window.alert('please enter correct credential')
+    }
     // await useLogin({ ...forms, type: alignment });
     // if (data) {
     //   return window.location.href = '/dashboard/candidate';
