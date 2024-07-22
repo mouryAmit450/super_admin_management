@@ -220,10 +220,11 @@ export default function Audit() {
 
   const auditReportApi = async () => {
     try {
-      // let report = await auditReport();
-      // const reportData = report.data;
+      let report = await auditReport();
+      const reportData = report.data;
       console.log(customData)
-      setRowsAndColumns(customData);
+      //setRowsAndColumns(customData);
+      setRowsAndColumns(reportData);
     } catch (err) {
       // alert("Something went wrong");
     }
@@ -298,13 +299,20 @@ export default function Audit() {
       }}
     >
       <CardContent>
-        <Box sx={{ display: "flex", mb: 2, padding: "15px 10px 0 10px" }}>
+        <Box sx={{ display: "flex", mb: 2, padding: "15px 10px 0 10px", justifyContent:'space-between' }}>
           <FormControl variant="outlined" sx={{ width: "200px" }}>
-            <InputLabel>Filter By</InputLabel>
+            <InputLabel >Filter By</InputLabel>
             <Select
               value={roleFilter}
               onChange={handleFilterChange}
               label="Role"
+              sx={{
+           
+                  fontSize: 16,
+                  borderColor: 'primary.main',
+                  height: '2.8em',
+              
+              }}
             >
               <MenuItem value="">
                 <em>All</em>
@@ -321,10 +329,16 @@ export default function Audit() {
             variant="outlined"
             value={searchText}
             onChange={handleSearchChange}
-            sx={{ paddingLeft: "5px" }}
+            sx={{
+        '& .MuiInputBase-root': {
+          fontSize: 16,
+          borderColor: 'primary.main',
+          height: '2.8em',
+        },
+      }}
           />
         </Box>
-        <Box sx={{ overflow: "auto", width: "900px" }}>
+        <Box sx={{ overflow: "auto", width: "1200px" }}>
           <MUITable rows={filteredRows} columns={columns} />
         </Box>
         {open &&<CustomizedDialogs open={open} setOpen={setOpen} data={modalData}/>}
