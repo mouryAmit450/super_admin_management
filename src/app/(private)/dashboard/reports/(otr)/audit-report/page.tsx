@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import {
   Card,
   CardContent,
@@ -10,17 +10,199 @@ import {
   MenuItem,
   TextField,
   Box,
+  IconButton,
 } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import MUITable from "@/components/datatable";
 import { auditReport } from "@/services/report";
+import CustomizedDialogs from "@/components/Modal";
 
+const customData =[
+  {
+      "_id": "669cb8daf1ba86139c960f1d",
+      "moduleId": "OTR",
+      "moduleSubId": "Candidate Registration",
+      "formName": null,
+      "roleId": "",
+      "userId": "",
+      "ipAddress": "14.102.117.50",
+      "requestPayload": {
+          "candidateOTRDetails": {
+              "uniqueId": "Unique123",
+              "candidateAadharDetails": {
+                  "candidateAadharVaultRefId": "VaultRef123",
+                  "candidateRegWithAadharFlag": "Y",
+                  "candidateAadharMatch10DtlFlag": "Y",
+                  "candidateEkycFlag": "Y"
+              },
+              "candidatePersonalDetails": {
+                  "candidateNameEn": "JOHN DOE",
+                  "candidateNameHi": "जॉन डो",
+                  "genderId": "1",
+                  "genderNameEn": "Male",
+                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
+                  "singleParentId": "SP123",
+                  "singleParentNameEn": "Single Parent"
+              },
+              "candidateParentDetails": [
+                  {
+                      "familyMemberId": "FM123",
+                      "familyTypeId": "FT123",
+                      "familyTypeNameEn": "Nuclear",
+                      "familyMemberName": "JANE DOE",
+                      "familyMemberGenderId": "2",
+                      "familyMemberGenderNameEn": "Female"
+                  }
+              ]
+          }
+      },
+      "createdBy": "",
+      "createdDt": "2024-07-21T07:25:06.487Z"
+  },
+  {
+      "_id": "669cb7f7f1ba86139c960f08",
+      "moduleId": "OTR",
+      "moduleSubId": "Candidate Registration",
+      "formName": null,
+      "roleId": "",
+      "userId": "",
+      "ipAddress": "14.102.117.50",
+      "requestPayload": {
+          "candidateOTRDetails": {
+              "uniqueId": "Unique123",
+              "candidateAadharDetails": {
+                  "candidateAadharVaultRefId": "VaultRef123",
+                  "candidateRegWithAadharFlag": "Y",
+                  "candidateAadharMatch10DtlFlag": "Y",
+                  "candidateEkycFlag": "Y"
+              }
+          }
+      },
+      "createdBy": "",
+      "createdDt": "2024-07-21T07:25:06.487Z"
+  },
+  {
+      "_id": "669cb92bf1ba86139c960f21",
+      "moduleId": "OTR",
+      "moduleSubId": "Candidate Registration",
+      "formName": null,
+      "roleId": "",
+      "userId": "",
+      "ipAddress": "14.102.117.50",
+      "requestPayload": {
+          "candidateOTRDetails": {
+              "uniqueId": "Unique123",
+              "candidateAadharDetails": {
+                  "candidateAadharVaultRefId": "VaultRef123",
+                  "candidateRegWithAadharFlag": "Y",
+                  "candidateAadharMatch10DtlFlag": "Y",
+                  "candidateEkycFlag": "Y",
+                  "_id": "669cb84af1ba86139c960f0f"
+              },
+              "candidatePersonalDetails": {
+                  "candidateNameEn": "JOHN DOE 3",
+                  "candidateNameHi": "जॉन डो",
+                  "genderId": "1",
+                  "genderNameEn": "Male",
+                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
+                  "singleParentId": "SP123",
+                  "singleParentNameEn": "Single Parent",
+                  "_id": "669cb84af1ba86139c960f10"
+              },
+              "candidateParentDetails": [
+                  {
+                      "familyMemberId": "FM123",
+                      "familyTypeId": "FT123",
+                      "familyTypeNameEn": "Nuclear",
+                      "familyMemberName": "JANE DOE",
+                      "_id": "669cb84af1ba86139c960f11"
+                  }
+              ],
+              "candidateMinorityDetails": {
+                  "minorityCategoryFlag": "N",
+                  "minorityCategoryId": "MC123",
+                  "minorityCategoryNameEn": "None",
+                  "_id": "669cb84af1ba86139c960f12"
+              },
+              "candidateEducationQualification": {
+                  "qualificationId": "Q123",
+                  "qualificationNameEn": "Bachelor's Degree",
+                  "boardUniversityId": "BU123",
+                  "boardUniversityName": "University of XYZ",
+                  "boardUniversityOthName": "XYZ University",
+                  "boardUniversityType": "Public",
+                  "qualificationPassingYear": "2012",
+                  "qualificationRollNo": "Roll123",
+                  "_id": "669cb84af1ba86139c960f13"
+              },
+              "candidateContactDetails": {
+                  "candidateMobile": "9855543413",
+                  "candidateEmail": "sarveesh@gmail.com",
+                  "firstTimeLogin": "Y",
+                  "mobileAlternateVerifiedFlag": "N",
+                  "emailAlternate": "sarveesdffdffffffffffh@gmail.com",
+                  "emailAlternateVerifiedFlag": "N",
+                  "_id": "669cb84af1ba86139c960f14"
+              },
+              "candidateConsentDetails": {
+                  "candidateTermsConditionConsentFlag": "Y",
+                  "candidateTermsConditionConsentDt": "2024-07-01T00:00:00.000Z",
+                  "candidateAadhaarConsentFlag": "N",
+                  "candidateAadhaarConsentDt": "2024-07-01T00:00:00.000Z",
+                  "_id": "669cb84af1ba86139c960f15"
+              },
+              "_id": "669cb84af1ba86139c960f0e",
+              "otrIds": {
+                  "refId": [],
+                  "_id": "669cb84af1ba86139c960f16",
+                  "otrId": "124000000000026"
+              }
+          },
+          "_id": "669cb84af1ba86139c960f0d",
+          "__v": 0
+      },
+      "createdBy": "",
+      "createdDt": "2024-07-21T07:25:06.487Z"
+  },
+  {
+      "_id": "669cb8bbf1ba86139c960f19",
+      "moduleId": "OTR",
+      "moduleSubId": "Candidate Registration",
+      "formName": null,
+      "roleId": "",
+      "userId": "",
+      "ipAddress": "14.102.117.50",
+      "requestPayload": {
+          "candidateOTRDetails": {
+              "uniqueId": "Unique123",
+              "candidateAadharDetails": {
+                  "candidateAadharVaultRefId": "VaultRef123",
+                  "candidateRegWithAadharFlag": "Y",
+                  "candidateAadharMatch10DtlFlag": "Y",
+                  "candidateEkycFlag": "Y"
+              },
+              "candidatePersonalDetails": {
+                  "candidateNameEn": "JOHN DOE",
+                  "candidateNameHi": "जॉन डो",
+                  "genderId": "1",
+                  "genderNameEn": "Male",
+                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
+                  "singleParentId": "SP123",
+                  "singleParentNameEn": "Single Parent"
+              }
+          }
+      },
+      "createdBy": "",
+      "createdDt": "2024-07-21T07:25:06.487Z"
+  }
+]
 export default function Audit() {
   const [columns, setColumns] = useState<GridColDef[]>([]);
   const [rows, setRows] = useState<any[]>([]);
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
-  const [candidateReport, setCandidateReport] = useState<any[]>([]);
-
+  const [open , setOpen] = useState(false)
+  const [modalData , setModelData] = useState([])
   const handleSearchChange = (event: any) => {
     setSearchText(event.target.value);
   };
@@ -29,14 +211,21 @@ export default function Audit() {
     setRoleFilter(event.target.value);
   };
 
+  const handleEyeButtonClick = (params: GridRenderCellParams) => {
+    setOpen(true)
+    console.log("Eye button clicked", params.row);
+    setModelData(params.row)
+    // Handle the eye button click event here
+  };
+
   const auditReportApi = async () => {
     try {
-      let report = await auditReport();
-      setCandidateReport(report.data);
-      const reportData = report.data;
-      setRowsAndColumns(reportData);
+      // let report = await auditReport();
+      // const reportData = report.data;
+      console.log(customData)
+      setRowsAndColumns(customData);
     } catch (err) {
-      alert("Something went wrong");
+      // alert("Something went wrong");
     }
   };
 
@@ -52,6 +241,22 @@ export default function Audit() {
         headerClassName: "super-app-theme--header",
       })
     );
+
+    // Add the custom column for the eye button
+    generatedColumns.push({
+      field: "actions",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params: GridRenderCellParams) => (
+        <IconButton
+          color="primary"
+          aria-label="view"
+          onClick={() => handleEyeButtonClick(params)}
+        >
+          <VisibilityIcon />
+        </IconButton>
+      ),
+    });
 
     const generatedRows = data.map((row: any, index: number) => ({
       id: index,
@@ -122,6 +327,7 @@ export default function Audit() {
         <Box sx={{ overflow: "auto", width: "900px" }}>
           <MUITable rows={filteredRows} columns={columns} />
         </Box>
+        {open &&<CustomizedDialogs open={open} setOpen={setOpen} data={modalData}/>}
       </CardContent>
     </Card>
   );
