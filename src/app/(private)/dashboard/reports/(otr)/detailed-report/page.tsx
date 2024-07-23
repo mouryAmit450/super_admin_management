@@ -265,7 +265,9 @@ export default function DetailedReport() {
   const auditReportApi = async () => {
     try {
       console.log(customData);
-      setRowsAndColumns(customData);
+      const report  = await auditReport()
+      const data = report.data
+      setRowsAndColumns(data);
     } catch (err) {
       // alert("Something went wrong");
     }
