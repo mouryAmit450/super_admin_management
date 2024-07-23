@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Cookies from 'js-cookie'
@@ -244,7 +244,7 @@ export default function DetailedReport() {
   const [roleFilter, setRoleFilter] = useState("");
   const [open, setOpen] = useState(false);
   const [modalData, setModelData] = useState([]);
-
+  const [reportData , setReportData] = useState([])
   const handleSearchChange = (event: any) => {
     setSearchText(event.target.value);
   };
@@ -266,6 +266,7 @@ export default function DetailedReport() {
         selectType: roleFilter,
         keyword: searchText,
       });
+      setReportData(report.data)
       const data = report.data
       setRowsAndColumns(data);
     } catch (err) {
@@ -284,10 +285,9 @@ export default function DetailedReport() {
     { label: "Aadhar", value: "aadhar" },
     // {label:'Date Of Registration' , value:'otrId'},
   ];
-  const setRowsAndColumns = (data: any) => {
-    const sampleData = data[0];
-    if (!sampleData) return '';
-    const generatedColumns: GridColDef[] = Object.keys(sampleData)
+ 
+  const setRowsAndColumns = useCallback((data:any) => {
+    const generatedColumns: GridColDef[] = Object.keys(data[0])
       .filter((key) => key !== "_id")
       .map((key) => ({
         field: key,
@@ -301,8 +301,8 @@ export default function DetailedReport() {
       ...row,
     }));
     setColumns(generatedColumns);
-    setRows(generatedRows);
-  };
+    setRows(generatedRows)
+  }, [searchText]);
 
   useEffect(() => {
     auditReportApi();
