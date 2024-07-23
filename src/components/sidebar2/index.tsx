@@ -63,7 +63,7 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
 }));
 
 const sidebarData: SidebarItem[] = [
- 
+  
   {
     name: "Audit Logs",
     items: [
@@ -91,9 +91,12 @@ const Sidebar2 = () => {
       if (item.items) {
         return (
           <Accordion className="subAccordion" key={index}>
+            {<AccordionSummary
+              expandIcon={<ExpandMoreIcon sx={{ color: "#2947A3" }} />} >
+              <Typography>{item.name}</Typography>
+            </AccordionSummary>}
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "#2947A3" }} />}
-            >
+              expandIcon={<ExpandMoreIcon sx={{ color: "#2947A3" }} />} >
               <Typography>{item.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
