@@ -2,8 +2,9 @@
 import Cards from "@/components/Cards";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, CardHeader, Grid, Typography } from "@mui/material";
 import { dashboardApi } from "@/services/report";
+import { colors } from "@/utils/colors";
 function Dashboard() {
   const [data, setData] = useState();
   const dashboardData = async () => {
@@ -21,58 +22,69 @@ function Dashboard() {
     dashboardData();
   }, []);
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={3}>
-        <Cards
-          count={data?.totalCount}
-          title={
-            <Typography variant="h6" style={{ fontSize: "16px" }}>
-              Total Users
-            </Typography>
-          }
-        />
+    <>
+      <CardHeader
+        title={"Dashboard"}
+        sx={{
+          backgroundColor: colors.primary,
+          color: "#fff",
+          padding: "12px",
+          marginBottom: "40px",
+        }}
+      />
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <Cards
+            count={data?.totalCount}
+            title={
+              <Typography variant="h6" style={{ fontSize: "16px" }}>
+                Total Users
+              </Typography>
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Cards
+            count={data?.totalMale}
+            title={
+              <Typography variant="h6" style={{ fontSize: "16px" }}>
+                Total Male
+              </Typography>
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Cards
+            count={data?.totalFemale}
+            title={
+              <Typography variant="h6" style={{ fontSize: "16px" }}>
+                Total Female
+              </Typography>
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Cards
+            count={data?.countY}
+            title={
+              <Typography variant="h6" style={{ fontSize: "16px" }}>
+                Aadhar Users
+              </Typography>
+            }
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Cards
+            count={data?.countN}
+            title={
+              <Typography variant="h6" style={{ fontSize: "16px" }}>
+                Non Aadhar Users
+              </Typography>
+            }
+          />
+        </Grid>
       </Grid>
-      <Grid item xs={3}>
-        <Cards
-          count={data?.totalMale}
-          title={
-            <Typography variant="h6" style={{ fontSize: "16px" }}>
-              Total Male
-            </Typography>
-          }
-        />
-      </Grid>
-      <Grid item xs={3}>
-        <Cards
-          count={data?.totalFemale}
-          title={
-            <Typography variant="h6" style={{ fontSize: "16px" }}>
-              Total Female
-            </Typography>
-          }
-        />
-      </Grid>
-      <Grid item xs={3}>
-        <Cards
-          count={data?.countY}
-          title={
-            <Typography variant="h6" style={{ fontSize: "16px" }}>
-              Aadhar Users
-            </Typography>
-          }
-        />
-      </Grid>
-      <Grid item xs={3}>
-        <Cards
-          count={data?.countN}
-          title={
-            <Typography variant="h6" style={{ fontSize: "16px" }}>
-              Non Aadhar Users
-            </Typography>
-          }
-        />
-      </Grid>
-    </Grid>
+    </>
   );
 }
 export default Dashboard;

@@ -14,11 +14,13 @@ import {
   TextField,
   IconButton,
   Box,
+  CardHeader,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import MUITable from "@/components/datatable";
 import { auditReport } from "@/services/report";
 import CustomizedDialogs from "@/components/Modal";
+import { colors } from "@/utils/colors";
 
 
 const customData =[
@@ -343,6 +345,10 @@ export default function DetailedReport() {
   return (
     <StyledWrapper>
       <div className="card">
+      <CardHeader
+                    title={"Detailed Report"}
+                    sx={{ backgroundColor: colors.primary, color: '#fff', padding:'12px', marginBottom:'20px', }}
+                  />
         <div className="filter-container">
           <FormControl variant="outlined" className="form-control">
             <InputLabel>Filter By</InputLabel>
