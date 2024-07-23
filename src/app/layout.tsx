@@ -3,7 +3,7 @@
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "@/components/theme";
+import theme from "@/components/theme"; 
 import Header from "@/components/header/header";
 import { Box, Grid } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
