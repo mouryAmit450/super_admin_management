@@ -21,9 +21,10 @@ const footerMenu = {
 const FooterStyle = styled(Box)(({ theme }) => ({
   backgroundColor: "#2947a3",
   borderTop: `1px solid ${theme.palette.divider}`,
-  padding: "60px 0",
+  padding: "40px 0",
   width: "100%",
   height: 'auto',
+  
   position: "relative",
   // bottom: 0,
   boxSizing: "border-box",
@@ -85,6 +86,7 @@ const FooterStyle = styled(Box)(({ theme }) => ({
       fontSize: "0.7rem",
     },
   },
+ 
   ".visit": {
     h2: {
       color: "white",
@@ -135,10 +137,10 @@ const Footer = memo(() => {
           container
           // spacing={3}
           className="responsive-row"
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
+          sx={{display:'flex',
+            justifyContent:'space-around'
           }}
+       
         >
           <Grid item xs={12} md={4}>
             <div className="footerleft">
