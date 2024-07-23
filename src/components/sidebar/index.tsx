@@ -11,29 +11,28 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 
-import { colors } from "@/utils/colors";
-import { SidebarData } from "@/types/sidebarType";
-
 const SidebarWrapper = styled("div")(({ theme }) => ({
-  width: "20%",
+  width: "100%",
   marginTop: "23px",
   position: "relative",
   top: 0,
-  // height: "100vh",
-
   height: "calc(100vh - 23px)",
-  backgroundColor: "#fff",
+  backgroundColor: "#2947A3",
   zIndex: 1000,
   overflowY: "auto",
   "& .accordion": {
     boxShadow: "none",
-    // "&:not(:last-child)": {
-    //   borderBottom: `1px solid ${theme.palette.divider}`,
-    // },
+    color: "#eaeef5",
+    backgroundColor: "#2947A3",
   },
   "& .accordionSummary": {
-    backgroundColor: "#eaeef5 ",
-    color: "#2947A3",
+    backgroundColor: "#223E92",
+    color: "#eaeef5",
+    borderRadius: "4px",
+    "&:hover": {
+      color: "#2947A3",
+      backgroundColor: " #eaeef5",
+    },
   },
   "& .accordionDetails": {
     display: "flex",
@@ -43,9 +42,11 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
   "& .nestedItem": {
     padding: "10px 16px",
     textDecoration: "none",
-    color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.divider}`, // Add bottom border
-
+    color: "#fff",
+    backgroundColor: "#425CAB",
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderRadius: "3px",
+    marginBottom: "1px",
     transition: "background-color 0.3s, color 0.3s",
     "&:hover": {
       color: "#2947A3",

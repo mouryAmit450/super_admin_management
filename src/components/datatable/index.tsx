@@ -30,6 +30,7 @@ export default function MUITable(props: any) {
           },
         }}
         pageSizeOptions={[5]}
+        sx={{minHeight:'400px'}}
         disableRowSelectionOnClick
       />
     </Box>

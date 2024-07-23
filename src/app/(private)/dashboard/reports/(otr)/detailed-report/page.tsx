@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Cookies from 'js-cookie'
 import {
   FormControl,
   InputLabel,
@@ -20,190 +17,190 @@ import MUITable from "@/components/datatable";
 import { auditReport } from "@/services/report";
 import CustomizedDialogs from "@/components/Modal";
 
-
-const customData =[
+const customData = [
   {
-      "_id": "669cb8daf1ba86139c960f1d",
-      "moduleId": "OTR",
-      "moduleSubId": "Candidate Registration",
-      "formName": null,
-      "roleId": "",
-      "userId": "",
-      "ipAddress": "14.102.117.50",
-      "requestPayload": {
-          "candidateOTRDetails": {
-              "uniqueId": "Unique123",
-              "candidateAadharDetails": {
-                  "candidateAadharVaultRefId": "VaultRef123",
-                  "candidateRegWithAadharFlag": "Y",
-                  "candidateAadharMatch10DtlFlag": "Y",
-                  "candidateEkycFlag": "Y"
-              },
-              "candidatePersonalDetails": {
-                  "candidateNameEn": "JOHN DOE",
-                  "candidateNameHi": "जॉन डो",
-                  "genderId": "1",
-                  "genderNameEn": "Male",
-                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
-                  "singleParentId": "SP123",
-                  "singleParentNameEn": "Single Parent"
-              },
-              "candidateParentDetails": [
-                  {
-                      "familyMemberId": "FM123",
-                      "familyTypeId": "FT123",
-                      "familyTypeNameEn": "Nuclear",
-                      "familyMemberName": "JANE DOE",
-                      "familyMemberGenderId": "2",
-                      "familyMemberGenderNameEn": "Female"
-                  }
-              ]
-          }
-      },
-      "createdBy": "",
-      "createdDt": "2024-07-21T07:25:06.487Z"
-  },
-  {
-      "_id": "669cb7f7f1ba86139c960f08",
-      "moduleId": "OTR",
-      "moduleSubId": "Candidate Registration",
-      "formName": null,
-      "roleId": "",
-      "userId": "",
-      "ipAddress": "14.102.117.50",
-      "requestPayload": {
-          "candidateOTRDetails": {
-              "uniqueId": "Unique123",
-              "candidateAadharDetails": {
-                  "candidateAadharVaultRefId": "VaultRef123",
-                  "candidateRegWithAadharFlag": "Y",
-                  "candidateAadharMatch10DtlFlag": "Y",
-                  "candidateEkycFlag": "Y"
-              }
-          }
-      },
-      "createdBy": "",
-      "createdDt": "2024-07-21T07:25:06.487Z"
-  },
-  {
-      "_id": "669cb92bf1ba86139c960f21",
-      "moduleId": "OTR",
-      "moduleSubId": "Candidate Registration",
-      "formName": null,
-      "roleId": "",
-      "userId": "",
-      "ipAddress": "14.102.117.50",
-      "requestPayload": {
-          "candidateOTRDetails": {
-              "uniqueId": "Unique123",
-              "candidateAadharDetails": {
-                  "candidateAadharVaultRefId": "VaultRef123",
-                  "candidateRegWithAadharFlag": "Y",
-                  "candidateAadharMatch10DtlFlag": "Y",
-                  "candidateEkycFlag": "Y",
-                  "_id": "669cb84af1ba86139c960f0f"
-              },
-              "candidatePersonalDetails": {
-                  "candidateNameEn": "JOHN DOE 3",
-                  "candidateNameHi": "जॉन डो",
-                  "genderId": "1",
-                  "genderNameEn": "Male",
-                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
-                  "singleParentId": "SP123",
-                  "singleParentNameEn": "Single Parent",
-                  "_id": "669cb84af1ba86139c960f10"
-              },
-              "candidateParentDetails": [
-                  {
-                      "familyMemberId": "FM123",
-                      "familyTypeId": "FT123",
-                      "familyTypeNameEn": "Nuclear",
-                      "familyMemberName": "JANE DOE",
-                      "_id": "669cb84af1ba86139c960f11"
-                  }
-              ],
-              "candidateMinorityDetails": {
-                  "minorityCategoryFlag": "N",
-                  "minorityCategoryId": "MC123",
-                  "minorityCategoryNameEn": "None",
-                  "_id": "669cb84af1ba86139c960f12"
-              },
-              "candidateEducationQualification": {
-                  "qualificationId": "Q123",
-                  "qualificationNameEn": "Bachelor's Degree",
-                  "boardUniversityId": "BU123",
-                  "boardUniversityName": "University of XYZ",
-                  "boardUniversityOthName": "XYZ University",
-                  "boardUniversityType": "Public",
-                  "qualificationPassingYear": "2012",
-                  "qualificationRollNo": "Roll123",
-                  "_id": "669cb84af1ba86139c960f13"
-              },
-              "candidateContactDetails": {
-                  "candidateMobile": "9855543413",
-                  "candidateEmail": "sarveesh@gmail.com",
-                  "firstTimeLogin": "Y",
-                  "mobileAlternateVerifiedFlag": "N",
-                  "emailAlternate": "sarveesdffdffffffffffh@gmail.com",
-                  "emailAlternateVerifiedFlag": "N",
-                  "_id": "669cb84af1ba86139c960f14"
-              },
-              "candidateConsentDetails": {
-                  "candidateTermsConditionConsentFlag": "Y",
-                  "candidateTermsConditionConsentDt": "2024-07-01T00:00:00.000Z",
-                  "candidateAadhaarConsentFlag": "N",
-                  "candidateAadhaarConsentDt": "2024-07-01T00:00:00.000Z",
-                  "_id": "669cb84af1ba86139c960f15"
-              },
-              "_id": "669cb84af1ba86139c960f0e",
-              "otrIds": {
-                  "refId": [],
-                  "_id": "669cb84af1ba86139c960f16",
-                  "otrId": "124000000000026"
-              }
+    _id: "669cb8daf1ba86139c960f1d",
+    moduleId: "OTR",
+    moduleSubId: "Candidate Registration",
+    formName: null,
+    roleId: "",
+    userId: "",
+    ipAddress: "14.102.117.50",
+    requestPayload: {
+      candidateOTRDetails: {
+        uniqueId: "Unique123",
+        candidateAadharDetails: {
+          candidateAadharVaultRefId: "VaultRef123",
+          candidateRegWithAadharFlag: "Y",
+          candidateAadharMatch10DtlFlag: "Y",
+          candidateEkycFlag: "Y",
+        },
+        candidatePersonalDetails: {
+          candidateNameEn: "JOHN DOE",
+          candidateNameHi: "जॉन डो",
+          genderId: "1",
+          genderNameEn: "Male",
+          candidateDateOfBirth: "1990-01-01T00:00:00.000Z",
+          singleParentId: "SP123",
+          singleParentNameEn: "Single Parent",
+        },
+        candidateParentDetails: [
+          {
+            familyMemberId: "FM123",
+            familyTypeId: "FT123",
+            familyTypeNameEn: "Nuclear",
+            familyMemberName: "JANE DOE",
+            familyMemberGenderId: "2",
+            familyMemberGenderNameEn: "Female",
           },
-          "_id": "669cb84af1ba86139c960f0d",
-          "__v": 0
+        ],
       },
-      "createdBy": "",
-      "createdDt": "2024-07-21T07:25:06.487Z"
+    },
+    createdBy: "",
+    createdDt: "2024-07-21T07:25:06.487Z",
   },
   {
-      "_id": "669cb8bbf1ba86139c960f19",
-      "moduleId": "OTR",
-      "moduleSubId": "Candidate Registration",
-      "formName": null,
-      "roleId": "",
-      "userId": "",
-      "ipAddress": "14.102.117.50",
-      "requestPayload": {
-          "candidateOTRDetails": {
-              "uniqueId": "Unique123",
-              "candidateAadharDetails": {
-                  "candidateAadharVaultRefId": "VaultRef123",
-                  "candidateRegWithAadharFlag": "Y",
-                  "candidateAadharMatch10DtlFlag": "Y",
-                  "candidateEkycFlag": "Y"
-              },
-              "candidatePersonalDetails": {
-                  "candidateNameEn": "JOHN DOE",
-                  "candidateNameHi": "जॉन डो",
-                  "genderId": "1",
-                  "genderNameEn": "Male",
-                  "candidateDateOfBirth": "1990-01-01T00:00:00.000Z",
-                  "singleParentId": "SP123",
-                  "singleParentNameEn": "Single Parent"
-              }
-          }
+    _id: "669cb7f7f1ba86139c960f08",
+    moduleId: "OTR",
+    moduleSubId: "Candidate Registration",
+    formName: null,
+    roleId: "",
+    userId: "",
+    ipAddress: "14.102.117.50",
+    requestPayload: {
+      candidateOTRDetails: {
+        uniqueId: "Unique123",
+        candidateAadharDetails: {
+          candidateAadharVaultRefId: "VaultRef123",
+          candidateRegWithAadharFlag: "Y",
+          candidateAadharMatch10DtlFlag: "Y",
+          candidateEkycFlag: "Y",
+        },
       },
-      "createdBy": "",
-      "createdDt": "2024-07-21T07:25:06.487Z"
-  }
-]
+    },
+    createdBy: "",
+    createdDt: "2024-07-21T07:25:06.487Z",
+  },
+  {
+    _id: "669cb92bf1ba86139c960f21",
+    moduleId: "OTR",
+    moduleSubId: "Candidate Registration",
+    formName: null,
+    roleId: "",
+    userId: "",
+    ipAddress: "14.102.117.50",
+    requestPayload: {
+      candidateOTRDetails: {
+        uniqueId: "Unique123",
+        candidateAadharDetails: {
+          candidateAadharVaultRefId: "VaultRef123",
+          candidateRegWithAadharFlag: "Y",
+          candidateAadharMatch10DtlFlag: "Y",
+          candidateEkycFlag: "Y",
+          _id: "669cb84af1ba86139c960f0f",
+        },
+        candidatePersonalDetails: {
+          candidateNameEn: "JOHN DOE 3",
+          candidateNameHi: "जॉन डो",
+          genderId: "1",
+          genderNameEn: "Male",
+          candidateDateOfBirth: "1990-01-01T00:00:00.000Z",
+          singleParentId: "SP123",
+          singleParentNameEn: "Single Parent",
+          _id: "669cb84af1ba86139c960f10",
+        },
+        candidateParentDetails: [
+          {
+            familyMemberId: "FM123",
+            familyTypeId: "FT123",
+            familyTypeNameEn: "Nuclear",
+            familyMemberName: "JANE DOE",
+            _id: "669cb84af1ba86139c960f11",
+          },
+        ],
+        candidateMinorityDetails: {
+          minorityCategoryFlag: "N",
+          minorityCategoryId: "MC123",
+          minorityCategoryNameEn: "None",
+          _id: "669cb84af1ba86139c960f12",
+        },
+        candidateEducationQualification: {
+          qualificationId: "Q123",
+          qualificationNameEn: "Bachelor's Degree",
+          boardUniversityId: "BU123",
+          boardUniversityName: "University of XYZ",
+          boardUniversityOthName: "XYZ University",
+          boardUniversityType: "Public",
+          qualificationPassingYear: "2012",
+          qualificationRollNo: "Roll123",
+          _id: "669cb84af1ba86139c960f13",
+        },
+        candidateContactDetails: {
+          candidateMobile: "9855543413",
+          candidateEmail: "sarveesh@gmail.com",
+          firstTimeLogin: "Y",
+          mobileAlternateVerifiedFlag: "N",
+          emailAlternate: "sarveesdffdffffffffffh@gmail.com",
+          emailAlternateVerifiedFlag: "N",
+          _id: "669cb84af1ba86139c960f14",
+        },
+        candidateConsentDetails: {
+          candidateTermsConditionConsentFlag: "Y",
+          candidateTermsConditionConsentDt: "2024-07-01T00:00:00.000Z",
+          candidateAadhaarConsentFlag: "N",
+          candidateAadhaarConsentDt: "2024-07-01T00:00:00.000Z",
+          _id: "669cb84af1ba86139c960f15",
+        },
+        _id: "669cb84af1ba86139c960f0e",
+        otrIds: {
+          refId: [],
+          _id: "669cb84af1ba86139c960f16",
+          otrId: "124000000000026",
+        },
+      },
+      _id: "669cb84af1ba86139c960f0d",
+      __v: 0,
+    },
+    createdBy: "",
+    createdDt: "2024-07-21T07:25:06.487Z",
+  },
+  {
+    _id: "669cb8bbf1ba86139c960f19",
+    moduleId: "OTR",
+    moduleSubId: "Candidate Registration",
+    formName: null,
+    roleId: "",
+    userId: "",
+    ipAddress: "14.102.117.50",
+    requestPayload: {
+      candidateOTRDetails: {
+        uniqueId: "Unique123",
+        candidateAadharDetails: {
+          candidateAadharVaultRefId: "VaultRef123",
+          candidateRegWithAadharFlag: "Y",
+          candidateAadharMatch10DtlFlag: "Y",
+          candidateEkycFlag: "Y",
+        },
+        candidatePersonalDetails: {
+          candidateNameEn: "JOHN DOE",
+          candidateNameHi: "जॉन डो",
+          genderId: "1",
+          genderNameEn: "Male",
+          candidateDateOfBirth: "1990-01-01T00:00:00.000Z",
+          singleParentId: "SP123",
+          singleParentNameEn: "Single Parent",
+        },
+      },
+    },
+    createdBy: "",
+    createdDt: "2024-07-21T07:25:06.487Z",
+  },
+];
 // Style Wrapper
 const StyledWrapper = styled.div`
   .card {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05),
+      0px -4px 8px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: hidden;
     padding: 20px;
@@ -265,7 +262,10 @@ export default function DetailedReport() {
   const auditReportApi = async () => {
     try {
       console.log(customData);
-      const report  = await auditReport()
+      const report = await auditReport({
+        selectType: roleFilter,
+        keyword: searchText,
+      });
       const data = report.data
       setRowsAndColumns(data);
     } catch (err) {
@@ -273,76 +273,47 @@ export default function DetailedReport() {
     }
   };
 
+  const filterMenu = [
+    { label: "OTR Id", value: "otrId" },
+    { label: "Candidate Name", value: "candidateName" },
+    // {label:`Father's Name` , value:'otrId'},
+    // {label:`Mother's Name` , value:'otrId'},
+    // {label:'Date Of Birth' , value:'otrId'},
+    { label: "IP Address", value: "ip" },
+    { label: "Gender", value: "gender" },
+    { label: "Aadhar", value: "aadhar" },
+    // {label:'Date Of Registration' , value:'otrId'},
+  ];
   const setRowsAndColumns = (data: any) => {
     const sampleData = data[0];
-    if (!sampleData) return;
-
-    // const generatedColumns: GridColDef[] = Object.keys(sampleData).map(
-    //   (key) => ({
-    //     field: key,
-    //     headerName: key,
-    //     width: 110,
-    //     headerClassName: "super-app-theme--header",
-    //   })
-    // );
+    if (!sampleData) return '';
     const generatedColumns: GridColDef[] = Object.keys(sampleData)
-  .filter((key) => key !== '_id')
-  .map((key) => ({
-    field: key,
-    headerName: key,
-    width: 110,
-    headerClassName: "super-app-theme--header",
-  }));
-
-    // generatedColumns.push({
-    //   field: "actions",
-    //   headerName: "Actions",
-    //   width: 150,
-    //   renderCell: (params: GridRenderCellParams) => (
-    //     <IconButton
-    //       color="primary"
-    //       aria-label="view"
-    //       onClick={() => handleEyeButtonClick(params)}
-    //     >
-    //       <VisibilityIcon />
-    //     </IconButton>
-    //   ),
-    // });
-   
+      .filter((key) => key !== "_id")
+      .map((key) => ({
+        field: key,
+        headerName: key,
+        width: 110,
+        headerClassName: "super-app-theme--header",
+      }));
 
     const generatedRows = data.map((row: any, index: number) => ({
       id: index,
       ...row,
     }));
-
     setColumns(generatedColumns);
     setRows(generatedRows);
   };
 
   useEffect(() => {
     auditReportApi();
-  }, []);
+  }, [searchText]);
 
-  const filteredRows = useMemo(() => {
-    return rows.filter((row) => {
-      const matchesSearchText = searchText
-        ? Object.values(row).some((value) =>
-            value?.toString()?.toLowerCase().includes(searchText.toLowerCase())
-          )
-        : true;
-      const matchesRoleFilter = roleFilter
-        ? row[roleFilter as keyof typeof row]
-            ?.toString()
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
-        : true;
-      return matchesSearchText && matchesRoleFilter;
-    });
-  }, [rows, searchText, roleFilter]);
+  useEffect(()=>{
+    Cookies.set('title' , 'Detailed Report')
+  },[])
 
   return (
     <StyledWrapper>
-      <div className="card">
         <div className="filter-container">
           <FormControl variant="outlined" className="form-control">
             <InputLabel>Filter By</InputLabel>
@@ -354,9 +325,9 @@ export default function DetailedReport() {
               <MenuItem value="">
                 <em>All</em>
               </MenuItem>
-              {columns.map((column) => (
-                <MenuItem key={column.field} value={column.field}>
-                  {column.headerName}
+              {filterMenu.map((column) => (
+                <MenuItem key={column.value} value={column.value}>
+                  {column.label}
                 </MenuItem>
               ))}
             </Select>
@@ -369,11 +340,15 @@ export default function DetailedReport() {
             className="text-field"
           />
         </div>
-        <Box className="table-container" sx={{width:'800px',overflowY:'auto'}}>
-          <MUITable rows={filteredRows} columns={columns} />
+        <Box
+          className="table-container"
+          sx={{ width: "800px", overflowY: "auto" }}
+        >
+          <MUITable rows={rows} columns={columns} />
         </Box>
-        {open && <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />}
-      </div>
+        {open && (
+          <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />
+        )}
     </StyledWrapper>
   );
 }

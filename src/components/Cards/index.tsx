@@ -12,9 +12,9 @@ import { colors } from '@/utils/colors';
 export default function Cards({title, count}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader title={title}  sx={{ backgroundColor: colors.primary, color: '#fff' , fontSize:'14px'}}/>
+      <CardHeader title={title}  sx={{backgroundColor: colors.light, color: '#fff' , padding:'10px', display:'flex', justifySelf:'center'}}/>
       <CardContent>
-        <Typography gutterBottom variant="h5" >
+        <Typography sx={{display:"flex", justifyContent:"center"}} gutterBottom variant="h5" >
           {count}
         </Typography>
       </CardContent>

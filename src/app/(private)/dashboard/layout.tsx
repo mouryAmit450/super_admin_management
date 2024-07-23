@@ -36,7 +36,7 @@ export default function RootLayout({
               <Box sx={{ width: '80%', padding: 5 }}>
                 <Card>
                   <CardHeader
-                    title={"Detailed Report"}
+                    title={cookies().get('title').value}
                     sx={{ backgroundColor: colors.primary, color: '#fff'}}
                   />
                   <CardContent>
