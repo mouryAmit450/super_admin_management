@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
     let url = req.url
 
     if(!verify && url.includes('/dashboard')){
+        console.log('hreererere')
         NextResponse.redirect('http://localhost:3000/')
     }
 }

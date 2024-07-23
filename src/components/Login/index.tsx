@@ -133,12 +133,12 @@ const Login = () => {
     if(forms.userId === '123456' && forms.candidatePassword === '123456'){
       Cookies.set('token' , 'dummyToken')
       Cookies.set('type','1')
-      router.push('/dashboard')
+      router.replace('/dashboard')
     }
     else if(forms.userId === '654321' && forms.candidatePassword === '654321'){
       Cookies.set('token' , 'dummyToken')
       Cookies.set('type','2')
-      router.push('/dashboard/reports/audit-report')
+      router.replace('/dashboard/reports/audit-report')
     }
     else{
       window.alert('please enter correct credential')
