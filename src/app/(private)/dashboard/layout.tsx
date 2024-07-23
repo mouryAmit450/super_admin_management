@@ -35,10 +35,10 @@ export default function RootLayout({
               <Box sx={{ width: '20%' }}>{type?.value === '1' ? <Sidebar /> : <Sidebar2 />}</Box>
               <Box sx={{ width: '80%', padding: 5 }}>
                 <Card>
-                  <CardHeader
+                  {/* <CardHeader
                     title={cookies().get('title').value}
                     sx={{ backgroundColor: colors.primary, color: '#fff'}}
-                  />
+                  /> */}
                   <CardContent>
 
                     {children}
