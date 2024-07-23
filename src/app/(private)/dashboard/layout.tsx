@@ -3,21 +3,22 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 import Header from "@/components/header/header";
-import { Box } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/sidebar";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Sidebar2 from "@/components/sidebar2";
+import { colors } from "@/utils/colors";
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
 
-  const token :any =cookies().get('token')
-  const type :any =cookies().get('type')
-  if(!token?.value){
+  const token: any = cookies().get('token')
+  const type: any = cookies().get('type')
+  if (!token?.value) {
     redirect('/')
   }
   return (
@@ -31,9 +32,18 @@ export default function RootLayout({
               <Header />
             </Box>
             <Box sx={{ display: "flex", marginTop: "64px" }}>
-              <Box sx={{width:'20%'}}>{type?.value === '1' ?<Sidebar />:<Sidebar2 />}</Box>
-              <Box sx={{ width:'80%', padding: 5 }}>
-                {children}
+              <Box sx={{ width: '20%' }}>{type?.value === '1' ? <Sidebar /> : <Sidebar2 />}</Box>
+              <Box sx={{ width: '80%', padding: 5 }}>
+                <Card>
+                  <CardHeader
+                    title={"Detailed Report"}
+                    sx={{ backgroundColor: colors.primary, color: '#fff'}}
+                  />
+                  <CardContent>
+
+                    {children}
+                  </CardContent>
+                </Card>
               </Box>
             </Box>
             <Box sx={{ width: "100%" }}>

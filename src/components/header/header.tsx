@@ -13,7 +13,7 @@ import { upscLogo } from "@/assets/images";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-
+import { colors } from "@/utils/colors";
 const HeaderWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
   background: "#2947A3",
@@ -28,15 +28,19 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     gap: "20px",
-    paddingLeft: "5px",
+    paddingLeft: "10px",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  "& .body":{
+    display:'flex',
+     flexDirection:'column'
   },
   "& .logoBox": {
     display: "flex",
     alignItems: "center",
     gap: "20px",
-    paddingLeft: "5px",
+    paddingLeft: "0px",
   },
   "& .mainTypography": {
     color: "#FFF",
@@ -50,6 +54,7 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
       fontSize: theme.typography.pxToRem(14),
     },
   },
+ 
   "& .subTypography": {
     color: "#FFF",
     textAlign: "left",
@@ -77,26 +82,36 @@ export default function Header() {
 
   return (
     <HeaderWrapper>
-      <Container>
+      <Container maxWidth={false}>
         <AppBar position="static" className="appBar">
           <Toolbar className="toolbar">
             <Box className="logoBox">
               <Link href="/">
                 <Image src={upscLogo} alt="LOGO" style={{ height: "60px" }} />
               </Link>
+              <div className="body">
               <Typography variant="h1" className="mainTypography">
                 संघ लोक सेवा आयोग
               </Typography>
               <Typography variant="body2" className="subTypography">
                 UNION PUBLIC SERVICE COMMISSION
               </Typography>
+              </div>
             </Box>
             {token && (
               <Box>
-                <button onClick={handleLogout}>Logout</button>
+                <Button  sx={{
+                          backgroundColor: "white",
+                          color: "#2947A3",
+                          mr: 3,
+                          "&:hover": {
+                            backgroundColor: "#6480d3",
+                            color: "white",
+                          },
+                        }}variant="contained" onClick={handleLogout}>Logout</Button>
               </Box>
             )}
-            <Box sx={{ flexGrow: 1 }} />
+         
           </Toolbar>
         </AppBar>
       </Container>

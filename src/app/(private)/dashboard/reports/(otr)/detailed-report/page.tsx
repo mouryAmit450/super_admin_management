@@ -277,29 +277,38 @@ export default function DetailedReport() {
     const sampleData = data[0];
     if (!sampleData) return;
 
-    const generatedColumns: GridColDef[] = Object.keys(sampleData).map(
-      (key) => ({
-        field: key,
-        headerName: key,
-        width: 110,
-        headerClassName: "super-app-theme--header",
-      })
-    );
+    // const generatedColumns: GridColDef[] = Object.keys(sampleData).map(
+    //   (key) => ({
+    //     field: key,
+    //     headerName: key,
+    //     width: 110,
+    //     headerClassName: "super-app-theme--header",
+    //   })
+    // );
+    const generatedColumns: GridColDef[] = Object.keys(sampleData)
+  .filter((key) => key !== '_id')
+  .map((key) => ({
+    field: key,
+    headerName: key,
+    width: 110,
+    headerClassName: "super-app-theme--header",
+  }));
 
-    generatedColumns.push({
-      field: "actions",
-      headerName: "Actions",
-      width: 150,
-      renderCell: (params: GridRenderCellParams) => (
-        <IconButton
-          color="primary"
-          aria-label="view"
-          onClick={() => handleEyeButtonClick(params)}
-        >
-          <VisibilityIcon />
-        </IconButton>
-      ),
-    });
+    // generatedColumns.push({
+    //   field: "actions",
+    //   headerName: "Actions",
+    //   width: 150,
+    //   renderCell: (params: GridRenderCellParams) => (
+    //     <IconButton
+    //       color="primary"
+    //       aria-label="view"
+    //       onClick={() => handleEyeButtonClick(params)}
+    //     >
+    //       <VisibilityIcon />
+    //     </IconButton>
+    //   ),
+    // });
+   
 
     const generatedRows = data.map((row: any, index: number) => ({
       id: index,
@@ -318,12 +327,12 @@ export default function DetailedReport() {
     return rows.filter((row) => {
       const matchesSearchText = searchText
         ? Object.values(row).some((value) =>
-            value?.toString().toLowerCase().includes(searchText.toLowerCase())
+            value?.toString()?.toLowerCase().includes(searchText.toLowerCase())
           )
         : true;
       const matchesRoleFilter = roleFilter
         ? row[roleFilter as keyof typeof row]
-            .toString()
+            ?.toString()
             .toLowerCase()
             .includes(searchText.toLowerCase())
         : true;

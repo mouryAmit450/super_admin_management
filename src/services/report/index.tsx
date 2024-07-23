@@ -10,6 +10,15 @@ async function auditReport() {
     return res.json()
   }
   
+  async function dashboardApi() {
+    const res = await fetch(base_url+'master_data/candidateCount')
+    if (!res.status === 200) {
+      throw new Error('Failed to fetch data')
+    }
+   
+    return res.json()
+  }
+  
  export {
-    auditReport
+    auditReport,dashboardApi
  } 
