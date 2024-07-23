@@ -91,7 +91,7 @@ const sidebarData = [
     items: [
       {
         name: "Detailed Reports",
-        link: "/dashboard/reports/audit-report/report-2",
+        link: "/dashboard/reports/detailed-reports",
       },
       {
         name: "Summary Report ",

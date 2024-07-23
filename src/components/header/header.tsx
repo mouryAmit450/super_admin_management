@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -9,12 +9,13 @@ import Container from "@mui/material/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { upscLogo } from "@/assets/images";
+// @ts-ignore
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-import { removeCookies } from "@/utils/cookies";
-import Cookies from 'js-cookie'
-// import { cookies } from "next/headers";
+
 const HeaderWrapper = styled(Box)(({ theme }) => ({
-  width: "100%",  
+  width: "100%",
   background: "#2947A3",
   padding: "10px 2px",
 
@@ -23,7 +24,6 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
     backgroundColor: "#2947A3",
   },
   "& .toolbar": {
-    // paddingLeft: '0!important',
     paddingRight: "0!important",
     display: "flex",
     alignItems: "center",
@@ -66,8 +66,15 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export default function Header() {
-  const token :any =Cookies.get('token')
-  console.log('this is token',token)
+  const token: any = Cookies.get("token");
+  const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    Cookies.remove("type");
+    router.replace("/"); // Redirect to home page
+  };
+
   return (
     <HeaderWrapper>
       <Container>
@@ -79,21 +86,16 @@ export default function Header() {
               </Link>
               <Typography variant="h1" className="mainTypography">
                 संघ लोक सेवा आयोग
-                <Typography variant="body2" className="subTypography">
-                  UNION PUBLIC SERVICE COMMISSION
-                </Typography>
+              </Typography>
+              <Typography variant="body2" className="subTypography">
+                UNION PUBLIC SERVICE COMMISSION
               </Typography>
             </Box>
-           {token && <Box>
-              <Button
-                variant="outlined"
-                sx={{ color: "white", borderColor: "#fff" }}
-                onClick={removeCookies}
-              >
-                Logout
-              </Button>
-            </Box>}
-
+            {token && (
+              <Box>
+                <Button onClick={handleLogout}>Logout</Button>
+              </Box>
+            )}
             <Box sx={{ flexGrow: 1 }} />
           </Toolbar>
         </AppBar>
