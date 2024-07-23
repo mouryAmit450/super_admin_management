@@ -1,21 +1,24 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
+import styled from 'styled-components';
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
-  Card,
-  CardContent,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
   TextField,
-  Box,
   IconButton,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import MUITable from "@/components/datatable";
 import { auditReport } from "@/services/report";
 import CustomizedDialogs from "@/components/Modal";
+
 
 const customData =[
   {
@@ -196,13 +199,54 @@ const customData =[
       "createdDt": "2024-07-21T07:25:06.487Z"
   }
 ]
-export default function Audit() {
+// Style Wrapper
+const StyledWrapper = styled.div`
+  .card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .filter-container {
+    display: flex;
+    margin-bottom: 16px;
+    padding: 15px 10px 0 10px;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .form-control {
+    width: 200px;
+    margin-right: 10px;
+    & .MuiInputBase-root {
+      font-size: 16px;
+      height: 2.8em;
+    }
+  }
+
+  .text-field {
+    & .MuiInputBase-root {
+      font-size: 16px;
+      height: 2.8em;
+    }
+  }
+
+  .table-container {
+    overflow: auto;
+    width: 100%;
+  }
+`;
+
+// Main Component
+export default function DetailedReport() {
   const [columns, setColumns] = useState<GridColDef[]>([]);
   const [rows, setRows] = useState<any[]>([]);
   const [searchText, setSearchText] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
-  const [open , setOpen] = useState(false)
-  const [modalData , setModelData] = useState([])
+  const [open, setOpen] = useState(false);
+  const [modalData, setModelData] = useState([]);
+
   const handleSearchChange = (event: any) => {
     setSearchText(event.target.value);
   };
@@ -212,19 +256,15 @@ export default function Audit() {
   };
 
   const handleEyeButtonClick = (params: GridRenderCellParams) => {
-    setOpen(true)
+    setOpen(true);
     console.log("Eye button clicked", params.row);
-    setModelData(params.row)
-    // Handle the eye button click event here
+    setModelData(params.row);
   };
 
   const auditReportApi = async () => {
     try {
-      let report = await auditReport();
-      const reportData = report.data;
-      console.log(customData)
-      //setRowsAndColumns(customData);
-      setRowsAndColumns(reportData);
+      console.log(customData);
+      setRowsAndColumns(customData);
     } catch (err) {
       // alert("Something went wrong");
     }
@@ -243,7 +283,6 @@ export default function Audit() {
       })
     );
 
-    // Add the custom column for the eye button
     generatedColumns.push({
       field: "actions",
       headerName: "Actions",
@@ -290,29 +329,15 @@ export default function Audit() {
   }, [rows, searchText, roleFilter]);
 
   return (
-    <Card
-      sx={{
-        boxShadow:
-          "0px 4px 8px rgba(0, 0, 0, 0.05), 0px -4px 8px rgba(0, 0, 0, 0.05)",
-        borderRadius: "8px",
-        overflow: "hidden",
-      }}
-    >
-      <CardContent>
-        <Box sx={{ display: "flex", mb: 2, padding: "15px 10px 0 10px", justifyContent:'space-between' }}>
-          <FormControl variant="outlined" sx={{ width: "200px" }}>
-            <InputLabel >Filter By</InputLabel>
+    <StyledWrapper>
+      <div className="card">
+        <div className="filter-container">
+          <FormControl variant="outlined" className="form-control">
+            <InputLabel>Filter By</InputLabel>
             <Select
               value={roleFilter}
               onChange={handleFilterChange}
-              label="Role"
-              sx={{
-           
-                  fontSize: 16,
-                  borderColor: 'primary.main',
-                  height: '2.8em',
-              
-              }}
+              label="Filter By"
             >
               <MenuItem value="">
                 <em>All</em>
@@ -329,20 +354,14 @@ export default function Audit() {
             variant="outlined"
             value={searchText}
             onChange={handleSearchChange}
-            sx={{
-        '& .MuiInputBase-root': {
-          fontSize: 16,
-          borderColor: 'primary.main',
-          height: '2.8em',
-        },
-      }}
+            className="text-field"
           />
-        </Box>
-        <Box sx={{ overflow: "auto", width: "1200px" }}>
+        </div>
+        <div className="table-container">
           <MUITable rows={filteredRows} columns={columns} />
-        </Box>
-        {open &&<CustomizedDialogs open={open} setOpen={setOpen} data={modalData}/>}
-      </CardContent>
-    </Card>
+        </div>
+        {open && <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />}
+      </div>
+    </StyledWrapper>
   );
 }
