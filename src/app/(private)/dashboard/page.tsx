@@ -20,12 +20,16 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    Cookies.set('title' , 'Dashboard')
+    
     dashboardData();
   }, []);
 
   return (
     <>
+     <CardHeader
+                    title={'Dashboard'}
+                    sx={{ backgroundColor: colors.primary, color: '#fff',padding:'12px', marginBottom:'25px'}}
+                  />
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Cards

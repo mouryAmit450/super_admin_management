@@ -20,7 +20,7 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
   marginTop: "23px",
   position: "relative",
   top: 0,
-  height: "calc(100vh - 23px)",
+  height: "890px",
   backgroundColor: "#2947A3",
   zIndex: 1000,
   overflowY: "auto",
@@ -76,10 +76,10 @@ const sidebarData = [
   {
     name: "Audit Logs",
     items: [
-      { name: "Admin Logs", link: "/dashboard/reports/audit-report" },
+      { name: "Admin Logs", link: "#" },
       {
         name: "Candidate Logs ",
-        link: "/dashboard/reports/candidate-report",
+        link: "#",
       },
     ],
   },
@@ -92,7 +92,7 @@ const sidebarData = [
       },
       {
         name: "Summary Report ",
-        link: "/dashboard/reports/candidate-report",
+        link: "#",
       },
     ],
   },
