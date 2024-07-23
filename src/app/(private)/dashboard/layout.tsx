@@ -11,8 +11,10 @@ import { redirect } from "next/navigation";
 import Sidebar2 from "@/components/sidebar2";
 import { colors } from "@/utils/colors";
 export default function RootLayout({
-  children,
+  children,title
 }: {
+  title: string;
+
   children: React.ReactNode;
 }) {
 
@@ -36,7 +38,7 @@ export default function RootLayout({
               <Box sx={{ width: '80%', padding: 5 }}>
                 <Card>
                   <CardHeader
-                    title="Detailed Report"
+                    title={title}
                     sx={{ backgroundColor: colors.primary, color: '#fff'}}
                   />
                   <CardContent>

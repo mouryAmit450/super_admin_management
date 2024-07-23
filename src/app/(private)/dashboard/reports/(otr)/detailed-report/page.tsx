@@ -275,7 +275,9 @@ export default function DetailedReport() {
   const auditReportApi = async () => {
     try {
       console.log(customData);
-      setRowsAndColumns(customData);
+      const report  = await auditReport()
+      const data = report.data
+      setRowsAndColumns(data);
     } catch (err) {
       // alert("Something went wrong");
     }
@@ -285,14 +287,22 @@ export default function DetailedReport() {
     const sampleData = data[0];
     if (!sampleData) return;
 
-    const generatedColumns: GridColDef[] = Object.keys(sampleData).map(
-      (key) => ({
-        field: key,
-        headerName: key,
-        width: 110,
-        headerClassName: "super-app-theme--header",
-      })
-    );
+    // const generatedColumns: GridColDef[] = Object.keys(sampleData).map(
+    //   (key) => ({
+    //     field: key,
+    //     headerName: key,
+    //     width: 110,
+    //     headerClassName: "super-app-theme--header",
+    //   })
+    // );
+    const generatedColumns: GridColDef[] = Object.keys(sampleData)
+  .filter((key) => key !== '_id')
+  .map((key) => ({
+    field: key,
+    headerName: key,
+    width: 110,
+    headerClassName: "super-app-theme--header",
+  }));
 
     // generatedColumns.push({
     //   field: "actions",

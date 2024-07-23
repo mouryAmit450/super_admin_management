@@ -20,8 +20,6 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
   marginTop: "23px",
   position: "relative",
   top: 0,
-  // height: "100vh",
-
   height: "calc(100vh - 23px)",
   backgroundColor: "#2947A3",
   zIndex: 1000,
@@ -73,8 +71,7 @@ const SidebarWrapper = styled("div")(({ theme }) => ({
 const sidebarData = [
   {
     name: "Dashboard",
-  
-    
+    link: "/",
   },
   {
     name: "Audit Logs",
@@ -106,12 +103,24 @@ const Sidebar2 = () => {
     <SidebarWrapper>
       {sidebarData.map((item, index) => (
         <Accordion className="accordion" key={index}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon style={{ color: "#2947A3" }} />}
-            className="accordionSummary"
-          >
-            <Typography>{item.name}</Typography>
-          </AccordionSummary>
+          {item.name !== "Dashboard" ? (
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon style={{ color: "#2947A3" }} />}
+              className="accordionSummary"
+            >
+              <Typography>{item.name}</Typography>
+            </AccordionSummary>
+          ) : (
+            <Link
+              href={item?.link}
+              key={index}
+              style={{ textDecoration: "none" }}
+            >
+              <AccordionSummary className="accordionSummary">
+                <Typography>{item.name}</Typography>
+              </AccordionSummary>
+            </Link>
+          )}
           <AccordionDetails className="accordionDetails">
             {item.items &&
               item.items.map((route, subIndex) => {
