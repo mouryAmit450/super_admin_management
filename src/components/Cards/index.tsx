@@ -5,20 +5,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CardHeader } from 'react-bootstrap';
 
 export default function Cards() {
   return (
     <Card sx={{ maxWidth: 345 }}>
+      <CardHeader title="Total User"/>
       <CardContent>
         <Typography gutterBottom variant="h5" >
-          Total User
-        </Typography>
-        <Typography gutterBottom variant="h5" >
           10244
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
         </Typography>
       </CardContent>
     </Card>
