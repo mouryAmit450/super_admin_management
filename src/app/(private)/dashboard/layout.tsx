@@ -30,9 +30,9 @@ export default function RootLayout({
             <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 1100 }}>
               <Header />
             </Box>
-            <Box sx={{ display: "flex", flex: 1, marginTop: "64px" }}>
-              {type?.value === '1' ?<Sidebar />:<Sidebar2 />}
-              <Box sx={{ flex: 1, padding: 5 }}>
+            <Box sx={{ display: "flex", marginTop: "64px" }}>
+              <Box sx={{width:'20%'}}>{type?.value === '1' ?<Sidebar />:<Sidebar2 />}</Box>
+              <Box sx={{ width:'80%', padding: 5 }}>
                 {children}
               </Box>
             </Box>

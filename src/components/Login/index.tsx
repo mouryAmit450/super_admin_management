@@ -138,7 +138,7 @@ const Login = () => {
     else if(forms.userId === '654321' && forms.candidatePassword === '654321'){
       Cookies.set('token' , 'dummyToken')
       Cookies.set('type','2')
-      router.replace('/dashboard/reports/audit-report')
+      router.replace('/dashboard')
     }
     else{
       window.alert('please enter correct credential')

@@ -93,7 +93,7 @@ export default function Header() {
             </Box>
             {token && (
               <Box>
-                <Button onClick={handleLogout}>Logout</Button>
+                <button onClick={handleLogout}>Logout</button>
               </Box>
             )}
             <Box sx={{ flexGrow: 1 }} />

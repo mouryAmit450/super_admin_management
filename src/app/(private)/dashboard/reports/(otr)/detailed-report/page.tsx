@@ -13,6 +13,7 @@ import {
   MenuItem,
   TextField,
   IconButton,
+  Box,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import MUITable from "@/components/datatable";
@@ -357,9 +358,9 @@ export default function DetailedReport() {
             className="text-field"
           />
         </div>
-        <div className="table-container">
+        <Box className="table-container" sx={{width:'800px',overflowY:'auto'}}>
           <MUITable rows={filteredRows} columns={columns} />
-        </div>
+        </Box>
         {open && <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />}
       </div>
     </StyledWrapper>

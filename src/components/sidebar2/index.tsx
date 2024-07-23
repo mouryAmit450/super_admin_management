@@ -16,7 +16,7 @@ import { SidebarData } from "@/types/sidebarType";
 import { Margin } from "@mui/icons-material";
 
 const SidebarWrapper = styled("div")(({ theme }) => ({
-  width: "20%",
+  width: "100%",
   marginTop: "23px",
   position: "relative",
   top: 0,
@@ -91,7 +91,7 @@ const sidebarData = [
     items: [
       {
         name: "Detailed Reports",
-        link: "/dashboard/reports/detailed-reports",
+        link: "/dashboard/reports/detailed-report",
       },
       {
         name: "Summary Report ",
