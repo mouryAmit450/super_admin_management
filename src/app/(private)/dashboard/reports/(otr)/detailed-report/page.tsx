@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie'
 import {
   FormControl,
   InputLabel,
@@ -11,13 +11,11 @@ import {
   TextField,
   IconButton,
   Box,
-  CardHeader,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import MUITable from "@/components/datatable";
 import { auditReport } from "@/services/report";
 import CustomizedDialogs from "@/components/Modal";
-import { colors } from "@/utils/colors";
 
 const customData = [
   {
@@ -246,7 +244,7 @@ export default function DetailedReport() {
   const [roleFilter, setRoleFilter] = useState("");
   const [open, setOpen] = useState(false);
   const [modalData, setModelData] = useState([]);
-
+  const [reportData , setReportData] = useState([])
   const handleSearchChange = (event: any) => {
     setSearchText(event.target.value);
   };
@@ -268,7 +266,8 @@ export default function DetailedReport() {
         selectType: roleFilter,
         keyword: searchText,
       });
-      const data = report.data;
+      setReportData(report.data)
+      const data = report.data
       setRowsAndColumns(data);
     } catch (err) {
       // alert("Something went wrong");
@@ -286,10 +285,9 @@ export default function DetailedReport() {
     { label: "Aadhar", value: "aadhar" },
     // {label:'Date Of Registration' , value:'otrId'},
   ];
-  const setRowsAndColumns = (data: any) => {
-    const sampleData = data[0];
-    if (!sampleData) return "";
-    const generatedColumns: GridColDef[] = Object.keys(sampleData)
+ 
+  const setRowsAndColumns = useCallback((data:any) => {
+    const generatedColumns: GridColDef[] = Object.keys(data[0])
       .filter((key) => key !== "_id")
       .map((key) => ({
         field: key,
@@ -303,63 +301,54 @@ export default function DetailedReport() {
       ...row,
     }));
     setColumns(generatedColumns);
-    setRows(generatedRows);
-  };
+    setRows(generatedRows)
+  }, [searchText]);
 
   useEffect(() => {
     auditReportApi();
   }, [searchText]);
 
-  useEffect(() => {
-    Cookies.set("title", "Detailed Report");
-  }, []);
+  useEffect(()=>{
+    Cookies.set('title' , 'Detailed Report')
+  },[])
 
   return (
     <StyledWrapper>
-      <CardHeader
-        title={"Detailed Reports"}
-        sx={{
-          backgroundColor: colors.primary,
-          color: "#fff",
-          padding: "12px",
-          marginBottom: "15px",
-        }}
-      />
-      <div className="filter-container">
-        <FormControl variant="outlined" className="form-control">
-          <InputLabel>Filter By</InputLabel>
-          <Select
-            value={roleFilter}
-            onChange={handleFilterChange}
-            label="Filter By"
-          >
-            <MenuItem value="">
-              <em>All</em>
-            </MenuItem>
-            {filterMenu.map((column) => (
-              <MenuItem key={column.value} value={column.value}>
-                {column.label}
+        <div className="filter-container">
+          <FormControl variant="outlined" className="form-control">
+            <InputLabel>Filter By</InputLabel>
+            <Select
+              value={roleFilter}
+              onChange={handleFilterChange}
+              label="Filter By"
+            >
+              <MenuItem value="">
+                <em>All</em>
               </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          label="Search"
-          variant="outlined"
-          value={searchText}
-          onChange={handleSearchChange}
-          className="text-field"
-        />
-      </div>
-      <Box
-        className="table-container"
-        sx={{ width: "800px", overflowY: "auto" }}
-      >
-        <MUITable rows={rows} columns={columns} />
-      </Box>
-      {open && (
-        <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />
-      )}
+              {filterMenu.map((column) => (
+                <MenuItem key={column.value} value={column.value}>
+                  {column.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            label="Search"
+            variant="outlined"
+            value={searchText}
+            onChange={handleSearchChange}
+            className="text-field"
+          />
+        </div>
+        <Box
+          className="table-container"
+          sx={{ width: "800px", overflowY: "auto" }}
+        >
+          <MUITable rows={rows} columns={columns} />
+        </Box>
+        {open && (
+          <CustomizedDialogs open={open} setOpen={setOpen} data={modalData} />
+        )}
     </StyledWrapper>
   );
 }
